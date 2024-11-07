@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Home</h1>
+    <p>Welcome to the home page!</p>
+    <p>Tengo: {{ articles | length }} articulos</p>
+    <ul>
+        {% for article in articles %}
+            <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
