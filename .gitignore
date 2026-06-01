@@ -11,3 +11,4 @@ content/
 theme/
 pelicanconf.py
 publishconf.py
+*.state.json
