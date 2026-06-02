@@ -4,12 +4,15 @@ import './image-slot.js';
 import './styles.css';
 import { Home } from './sections';
 import { ProjectDetail } from './project-detail';
-import { PROJECTS } from './data';
+import { CategoryPage } from './category-page';
+import { PROJECTS, CATEGORIES } from './data';
 
 function parseHash() {
   const h = (window.location.hash || "").replace(/^#\/?/, "");
-  const m = h.match(/^p\/(.+)$/);
-  if (m) return { view: "project", slug: decodeURIComponent(m[1]) };
+  const mP = h.match(/^p\/(.+)$/);
+  if (mP) return { view: "project", slug: decodeURIComponent(mP[1]) };
+  const mC = h.match(/^cat\/(.+)$/);
+  if (mC) return { view: "category", catId: decodeURIComponent(mC[1]) };
   return { view: "home" };
 }
 
@@ -20,7 +23,7 @@ function App() {
     const handler = () => {
       const r = parseHash();
       setRoute(r);
-      if (r.view === "project") window.scrollTo(0, 0);
+      if (r.view !== "home") window.scrollTo(0, 0);
     };
     window.addEventListener("hashchange", handler);
     return () => window.removeEventListener("hashchange", handler);
@@ -29,6 +32,10 @@ function App() {
   if (route.view === "project") {
     const exists = PROJECTS.some((x) => x.slug === route.slug);
     if (exists) return <ProjectDetail slug={route.slug} />;
+  }
+  if (route.view === "category") {
+    const exists = CATEGORIES.some((x) => x.id === route.catId);
+    if (exists) return <CategoryPage catId={route.catId} />;
   }
   return <Home />;
 }

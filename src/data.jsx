@@ -92,10 +92,20 @@ export const SKILLS = [
   [{ en: "Other", es: "Otros" }, "--c-other", ["Git", "GitHub", "Unity"]],
 ];
 
+/* ---------- Project categories ---------- */
+export const CATEGORIES = [
+  { id: "all",    label: { en: "All",            es: "Todo"           } },
+  { id: "dev",    label: { en: "Development",    es: "Desarrollo"     } },
+  { id: "cyber",  label: { en: "Cybersecurity",  es: "Ciberseguridad" } },
+  { id: "design", label: { en: "Design",         es: "Diseño"         } },
+  { id: "games",  label: { en: "Games",          es: "Juegos"         } },
+];
+
 /* ---------- Projects ---------- */
 export const PROJECTS = [
   {
     slug: "andeseats",
+    category: "dev",
     name: "AndesEats",
     kicker: "andeseats.co",
     device: "web",
@@ -125,6 +135,7 @@ export const PROJECTS = [
   },
   {
     slug: "protalker",
+    category: "dev",
     name: "ProTalker",
     kicker: "AI · NLP",
     device: "web",
@@ -153,6 +164,7 @@ export const PROJECTS = [
   },
   {
     slug: "spendant",
+    category: "dev",
     name: "Spendant",
     kicker: { en: "Mobile · Finance", es: "Móvil · Finanzas" },
     device: "mobile",
@@ -181,6 +193,7 @@ export const PROJECTS = [
   },
   {
     slug: "space-invaders",
+    category: "games",
     name: "Space Invaders",
     kicker: { en: "Game · Coursework", es: "Juego · Curso" },
     device: "game",
@@ -209,6 +222,7 @@ export const PROJECTS = [
   },
   {
     slug: "studio",
+    category: "design",
     name: "3D & Motion",
     kicker: { en: "Design Minor", es: "Minor de Diseño" },
     device: "cube",
@@ -237,11 +251,41 @@ export const PROJECTS = [
       { id: "studio-4", ratio: "1 / 1", cap: { en: "Scene", es: "Escena" } },
     ],
   },
+  {
+    slug: "ctf-writeups",
+    category: "cyber",
+    name: "CTF Writeups",
+    kicker: { en: "Security · CTF", es: "Seguridad · CTF" },
+    device: "web",
+    badge: { en: "Writeups", es: "Writeups" },
+    tagline: { en: "Capture the Flag solutions and security challenge breakdowns.", es: "Soluciones de CTF y análisis de retos de seguridad." },
+    year: "2025 →",
+    role: { en: "Solo", es: "Individual" },
+    status: { en: "Ongoing", es: "En curso" },
+    stack: ["CTF", "Web Security", "Forensics", "Crypto"],
+    overview: [
+      { en: "A living collection of CTF writeups and security challenge breakdowns — web exploitation, cryptography, reverse engineering and forensics.",
+        es: "Una colección viva de writeups de CTF y análisis de retos de seguridad: explotación web, criptografía, ingeniería inversa y forense." },
+      { en: "Each writeup documents the thought process, tools used and lessons learned. Competitions include PicoCTF, HackTheBox and university events.",
+        es: "Cada writeup documenta el proceso de pensamiento, las herramientas usadas y las lecciones aprendidas. Competencias incluyen PicoCTF, HackTheBox y eventos universitarios." },
+    ],
+    highlights: [
+      { en: "Web exploitation: XSS, SQLi, SSRF, auth bypasses", es: "Explotación web: XSS, SQLi, SSRF, bypass de autenticación" },
+      { en: "Cryptography: classical ciphers, RSA, hash analysis", es: "Criptografía: cifrados clásicos, RSA, análisis de hashes" },
+      { en: "Forensics & reverse engineering challenges", es: "Retos de forense e ingeniería inversa" },
+    ],
+    gallery: [
+      { id: "ctf-1", ratio: "16 / 9", span: "full", cap: { en: "Challenge overview", es: "Vista del reto" } },
+      { id: "ctf-2", ratio: "16 / 11", span: "half", cap: { en: "Exploit / solution", es: "Exploit / solución" } },
+      { id: "ctf-3", ratio: "16 / 11", span: "half", cap: { en: "Flag captured", es: "Flag capturada" } },
+    ],
+  },
 ];
 
 export function getEXP(lang) { return L(EXP, lang); }
 export function getSKILLS(lang) { return L(SKILLS, lang); }
 export function getPROJECTS(lang) { return L(PROJECTS, lang); }
+export function getCATEGORIES(lang) { return L(CATEGORIES, lang); }
 export function getPROJECT(slug, lang) {
   const p = PROJECTS.find((x) => x.slug === slug);
   return p ? L(p, lang) : null;

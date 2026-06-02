@@ -3,9 +3,11 @@
    Skills, Contact
    ============================================================ */
 import { useState, useEffect } from 'react';
-import { DecryptText, ParticleField, Reveal, Magnetic, useSpotlight } from './fx';
+import { DecryptText, ParticleField, Reveal, Magnetic } from './fx';
 import { useLang, STR, LangToggle, ThemeToggle } from './i18n';
-import { Icon, getEXP, getPROJECTS, getSKILLS } from './data';
+import { Icon, getEXP, getPROJECTS, getSKILLS, getCATEGORIES } from './data';
+import CardSwap, { Card } from './CardSwap';
+import StarBorder from './StarBorder';
 import { scrollToId } from './utils';
 
 const NAV_IDS = ["about", "experience", "projects", "skills", "contact"];
@@ -176,55 +178,154 @@ export function Experience() {
   );
 }
 
-/* ---------- Project card cover ---------- */
-function CardCover({ p }) {
+/* ---------- CardSwap — category cards ---------- */
+const CAT_HUE   = { dev: '220', cyber: '150', design: '286', games: '55' };
+const CAT_COLOR = {
+  dev:    'oklch(0.78 0.12 220)',
+  cyber:  'oklch(0.78 0.15 150)',
+  design: 'oklch(0.72 0.14 286)',
+  games:  'oklch(0.78 0.15 55)',
+};
+
+const CAT_DESC = {
+  dev:    { en: 'Web, mobile & full-stack builds.',       es: 'Apps web, móvil y full-stack.' },
+  cyber:  { en: 'CTF writeups & security research.',      es: 'Writeups de CTF e investigación.' },
+  design: { en: '3D modeling, motion & visual craft.',    es: 'Modelado 3D, motion y diseño.' },
+  games:  { en: 'Game dev projects & experiments.',       es: 'Videojuegos y experimentos.' },
+};
+
+function CatSwapCard({ cat, projects, lang }) {
+  const hue = CAT_HUE[cat.id] || '260';
+  const tags = [...new Set(projects.flatMap(p => p.stack))].slice(0, 6);
+  const desc = CAT_DESC[cat.id]?.[lang] || '';
   return (
-    <div className={`card-cover dev-${p.device}`}>
-      <div className="cover-grid"></div>
-      <div className="cover-label">{p.kicker}</div>
-      <div className="cover-glyph">{p.name.charAt(0)}</div>
+    <div className="cs-inner">
+      {/* browser bar */}
+      <div className="cs-bar">
+        <span className="cs-dots"><span /><span /><span /></span>
+        <span className="cs-bar-title">Sergio Castaño</span>
+        <span className={`cs-bar-badge cat-color-${cat.id}`}>{cat.label}</span>
+      </div>
+
+      {/* visual body */}
+      <div className="cs-visual" style={{ '--cs-hue': hue }}>
+        {/* big watermark name */}
+        <div className="cs-watermark">{cat.label}</div>
+        {/* centered count */}
+        <div className="cs-count-display">
+          <span className="cs-count-num">{projects.length}</span>
+          <span className="cs-count-label">{projects.length === 1 ? 'project' : 'projects'}</span>
+        </div>
+      </div>
+
+      {/* footer */}
+      <div className="cs-foot">
+        <div className="cs-foot-top">
+          <div className="cs-name">{cat.label}</div>
+          <div className="cs-tagline">{desc}</div>
+        </div>
+        <div className="cs-stack">
+          {tags.map(s => <span key={s} className="cs-tag">{s}</span>)}
+        </div>
+      </div>
     </div>
   );
 }
 
-/* ---------- Projects grid ---------- */
+const goCategory = (id) => { window.location.hash = '/cat/' + id; };
+
+/* responsive card dimensions — rendered at native size, no CSS scale */
+function useCardSize() {
+  const [size, setSize] = useState(() => getSize(window.innerWidth));
+  useEffect(() => {
+    const handler = () => setSize(getSize(window.innerWidth));
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, []);
+  return size;
+}
+function getSize(w) {
+  if (w < 400)  return { width: 240, height: 300, cardDistance: 28, verticalDistance: 32 };
+  if (w < 560)  return { width: 290, height: 360, cardDistance: 34, verticalDistance: 38 };
+  if (w < 768)  return { width: 340, height: 420, cardDistance: 40, verticalDistance: 46 };
+  if (w < 1100) return { width: 380, height: 470, cardDistance: 46, verticalDistance: 54 };
+  return               { width: 420, height: 520, cardDistance: 52, verticalDistance: 60 };
+}
+
+/* ---------- Projects ---------- */
 export function Projects() {
   const [lang] = useLang();
   const t = STR[lang].proj;
-  const projects = getPROJECTS(lang);
-  const spot = useSpotlight();
+  const allProjects = getPROJECTS(lang);
+  const categories  = getCATEGORIES(lang).filter(c => c.id !== 'all');
+  const cardSize    = useCardSize();
+
   return (
     <section id="projects" className="section-pad">
       <div className="wrap">
-        <Reveal><div className="eyebrow"><span className="num">03</span> <DecryptText onView key={lang} text={t.eyebrow} /></div></Reveal>
         <Reveal>
+          <div className="eyebrow">
+            <span className="num">03</span>
+            <DecryptText onView key={lang} text={t.eyebrow} />
+          </div>
+        </Reveal>
+        <Reveal delay={40}>
           <div className="proj-head">
             <h2 className="section-title"><DecryptText onView key={lang} text={t.title} /></h2>
             <p className="proj-sub">{t.sub}</p>
           </div>
         </Reveal>
-        <div className="proj-grid">
-          {projects.map((p, i) => (
-            <Reveal key={p.slug} delay={Math.min(i, 3) * 80}>
-              <a className="card" href={`#/p/${p.slug}`} onMouseMove={spot}
-                 onClick={(e) => { e.preventDefault(); goProject(p.slug); }}>
-                <CardCover p={p} />
-                <div className="card-body">
-                  <div className="card-top">
-                    <span className="card-badge">{p.badge}</span>
-                    {p.live
-                      ? <span className="card-live"><span className="d"></span>{p.live.label}</span>
-                      : <span className="card-status">{p.status}</span>}
-                  </div>
-                  <div className="card-name">{p.name}</div>
-                  <div className="card-desc">{p.tagline}</div>
-                  <div className="card-stack">{p.stack.slice(0, 3).map((s) => <span key={s}>{s}</span>)}</div>
-                  <span className="card-link">{t.view} <span className="arrow">→</span></span>
-                </div>
-              </a>
-            </Reveal>
-          ))}
-        </div>
+
+        <Reveal className="proj-swap-area">
+          <div className="proj-swap-wrap">
+            <CardSwap
+              width={cardSize.width}
+              height={cardSize.height}
+              cardDistance={cardSize.cardDistance}
+              verticalDistance={cardSize.verticalDistance}
+              delay={3800}
+              pauseOnHover={true}
+              skewAmount={4}
+              easing="elastic"
+            >
+              {categories.map(cat => {
+                const catProjects = allProjects.filter(p => p.category === cat.id);
+                return (
+                  <Card key={cat.id} onClick={() => goCategory(cat.id)}>
+                    <StarBorder
+                      as="div"
+                      color={CAT_COLOR[cat.id]}
+                      speed="5s"
+                      thickness={2}
+                    >
+                      <CatSwapCard cat={cat} projects={catProjects} lang={lang} />
+                    </StarBorder>
+                  </Card>
+                );
+              })}
+            </CardSwap>
+          </div>
+        </Reveal>
+
+        {/* category hint row */}
+        <Reveal delay={80}>
+          <div className="proj-cat-hint">
+            {categories.map((cat, i) => {
+              const count = allProjects.filter(p => p.category === cat.id).length;
+              return (
+                <button
+                  key={cat.id}
+                  className={`pch-btn cat-color-${cat.id}`}
+                  onClick={() => goCategory(cat.id)}
+                >
+                  <span className="pch-dot" />
+                  <span className="pch-label">{cat.label}</span>
+                  <span className="pch-count">{count}</span>
+                </button>
+              );
+            })}
+          </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -281,8 +382,8 @@ export function Contact() {
         <Reveal delay={200}>
           <div className="socials">
             <a className="social" href="https://github.com/5ergioC" target="_blank" rel="noopener">{Icon.github({ className: "ic" })} GitHub</a>
-            <a className="social soon" href="#" onClick={(e) => e.preventDefault()}>{Icon.linkedin({ className: "ic" })} LinkedIn <span className="tag">{t.soon}</span></a>
-            <a className="social soon" href="#" onClick={(e) => e.preventDefault()}>{Icon.behance({ className: "ic" })} Behance <span className="tag">{t.soon}</span></a>
+            <a className="social" href="https://www.linkedin.com/in/sergio-alejandro-castaño-arcila/" target="_blank" rel="noopener">{Icon.linkedin({ className: "ic" })} LinkedIn</a>
+            <a className="social" href="https://www.behance.net/sergiocastao6" target="_blank" rel="noopener">{Icon.behance({ className: "ic" })} Behance</a>
           </div>
         </Reveal>
       </div>

@@ -98,9 +98,11 @@ export const STR = {
     },
     exp: { eyebrow: "Experience", title: "Where I've been building & teaching.", active: "Active", remote: "Remote" },
     proj: {
-      eyebrow: "Selected Work", title: "Projects & experiments.",
-      sub: "Click any project for a closer look. Live, prototype or coursework, the design lives on its own page.",
+      eyebrow: "Selected Work", title: "Explore by area.",
+      sub: "Four areas, one stack. Click a card to dive into the work behind each one.",
       view: "View project",
+      featured: "Featured",
+      more: "More projects",
     },
     skills: { eyebrow: "Toolkit", title: "Technologies I work with." },
     contact: {
@@ -141,9 +143,11 @@ export const STR = {
     },
     exp: { eyebrow: "Experiencia", title: "Dónde he construido y enseñado.", active: "Activo", remote: "Remoto" },
     proj: {
-      eyebrow: "Trabajo Seleccionado", title: "Proyectos y experimentos.",
-      sub: "Haz clic en cualquier proyecto para verlo de cerca. En vivo, prototipo o de curso, el diseño vive en su propia página.",
+      eyebrow: "Trabajo Seleccionado", title: "Explora por área.",
+      sub: "Cuatro áreas, un mismo stack. Haz clic en una card para ver el trabajo detrás de cada una.",
       view: "Ver proyecto",
+      featured: "Destacado",
+      more: "Más proyectos",
     },
     skills: { eyebrow: "Herramientas", title: "Tecnologías con las que trabajo." },
     contact: {
