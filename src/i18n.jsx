@@ -112,7 +112,7 @@ export const STR = {
     },
     detail: {
       all: "All projects", crumb: "Projects", year: "Year", role: "Role", status: "Status",
-      visit: "Visit", overview: "Overview", stack: "Stack", highlights: "Highlights", gallery: "Gallery",
+      visit: "Visit", overview: "Overview", stack: "Stack", highlights: "Highlights", demo: "Demo", gallery: "Gallery",
       hint: "Drag an image onto any frame, it saves automatically.", more: "More work", back: "Back to portfolio",
       tt: "360° turntable", ttHint: "Drag to spin", ttDrop: "Drop a sequence of frames here, or click to choose.", ttNote: "Tip: export ~24 to 36 frames of one full rotation, named in order (001 to 036).", ttClear: "Clear", ttPlay: "Play", ttPause: "Pause", ttLoading: "Processing frames…",
     },
@@ -157,7 +157,7 @@ export const STR = {
     },
     detail: {
       all: "Todos los proyectos", crumb: "Proyectos", year: "Año", role: "Rol", status: "Estado",
-      visit: "Visitar", overview: "Resumen", stack: "Stack", highlights: "Destacados", gallery: "Galería",
+      visit: "Visitar", overview: "Resumen", stack: "Stack", highlights: "Destacados", demo: "Demo", gallery: "Galería",
       hint: "Arrastra una imagen a cualquier marco, se guarda automáticamente.", more: "Más trabajo", back: "Volver al portafolio",
       tt: "Vista 360°", ttHint: "Arrastra para girar", ttDrop: "Suelta aquí una secuencia de frames, o haz clic para elegir.", ttNote: "Tip: exporta ~24 a 36 frames de una vuelta completa, nombrados en orden (001 a 036).", ttClear: "Quitar", ttPlay: "Reproducir", ttPause: "Pausar", ttLoading: "Procesando frames…",
     },

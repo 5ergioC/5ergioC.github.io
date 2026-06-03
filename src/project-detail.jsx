@@ -20,40 +20,64 @@ function Slot({ g, shape = "rounded", radius = 14 }) {
   );
 }
 
+function VideoEmbed({ p }) {
+  if (!p.video) return null;
+  return (
+    <div className="video-wrap gallery-video">
+      <iframe
+        className="demo-video"
+        src={`https://www.youtube.com/embed/${p.video}`}
+        title={p.name + " demo"}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      />
+    </div>
+  );
+}
+
 function Gallery({ p }) {
   if (p.device === "mobile") {
     return (
-      <div className="gallery-phones">
-        {p.gallery.map((g) => (
-          <figure className="phone" key={g.id}>
-            <div className="phone-frame"><div className="phone-notch"></div><Slot g={g} radius={26} /></div>
-            <figcaption>{g.cap}</figcaption>
-          </figure>
-        ))}
-      </div>
+      <>
+        <VideoEmbed p={p} />
+        <div className="gallery-phones">
+          {p.gallery.map((g) => (
+            <figure className="phone" key={g.id}>
+              <div className="phone-frame"><div className="phone-notch"></div><Slot g={g} radius={26} /></div>
+              <figcaption>{g.cap}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </>
     );
   }
   if (p.device === "cube") {
     return (
-      <div className="gallery-cubes">
+      <>
+        <VideoEmbed p={p} />
+        <div className="gallery-cubes">
+          {p.gallery.map((g) => (
+            <figure key={g.id} className="shot">
+              <div className="shot-frame" style={{ aspectRatio: g.ratio }}><Slot g={g} /></div>
+              <figcaption>{g.cap}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </>
+    );
+  }
+  return (
+    <>
+      <VideoEmbed p={p} />
+      <div className="gallery">
         {p.gallery.map((g) => (
-          <figure key={g.id} className="shot">
+          <figure key={g.id} className={`shot ${g.span === "full" ? "full" : "half"}`}>
             <div className="shot-frame" style={{ aspectRatio: g.ratio }}><Slot g={g} /></div>
             <figcaption>{g.cap}</figcaption>
           </figure>
         ))}
       </div>
-    );
-  }
-  return (
-    <div className="gallery">
-      {p.gallery.map((g) => (
-        <figure key={g.id} className={`shot ${g.span === "full" ? "full" : "half"}`}>
-          <div className="shot-frame" style={{ aspectRatio: g.ratio }}><Slot g={g} /></div>
-          <figcaption>{g.cap}</figcaption>
-        </figure>
-      ))}
-    </div>
+    </>
   );
 }
 

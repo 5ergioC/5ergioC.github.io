@@ -751,6 +751,27 @@ footer .meta .accent { color: var(--purple); }
 .hl-list li { font-size: 14.5px; color: var(--fg-soft); line-height: 1.5; padding-left: 22px; position: relative; }
 .hl-list li::before { content: ""; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 2px; background: linear-gradient(135deg, var(--purple), var(--cyan)); }
 
+/* video embed */
+.video-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+}
+.demo-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.gallery-video {
+  margin-bottom: 40px;
+}
+
 /* gallery */
 .gallery-wrap { margin-top: 64px; }
 .gallery-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 26px; }
