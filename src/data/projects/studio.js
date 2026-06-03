@@ -1,0 +1,31 @@
+export const studio = {
+  slug: "studio",
+  category: "design",
+  name: "3D & Motion",
+  kicker: { en: "Design Minor", es: "Minor de Diseño" },
+  device: "cube",
+  badge: { en: "Design · 3D", es: "Diseño · 3D" },
+  tagline: { en: "Modeling & animation from my Design & Creation minor.", es: "Modelado y animación de mi minor en Diseño y Creación." },
+  year: "2024 - 2025",
+  role: { en: "Design & creation", es: "Diseño y creación" },
+  status: { en: "Selected coursework", es: "Trabajos seleccionados" },
+  stack: ["Blender", "Adobe Suite", "Modeling", "Animation"],
+  turntable: { id: "studio-360", accent: 330 },
+  overview: [
+    { en: "Alongside engineering, my Minor in Design & Creation pushed me into 3D modeling and animation, building objects, scenes and short motion pieces in Blender and the Adobe suite.",
+      es: "Junto a la ingeniería, mi Minor en Diseño y Creación me llevó al modelado 3D y la animación, construyendo objetos, escenas y piezas cortas de motion en Blender y la suite de Adobe." },
+    { en: "This is where the visual side of how I think lives.",
+      es: "Aquí vive el lado visual de cómo pienso." },
+  ],
+  highlights: [
+    { en: "3D modeling and rendering in Blender", es: "Modelado y renderizado 3D en Blender" },
+    { en: "Motion and animation explorations", es: "Exploraciones de motion y animación" },
+    { en: "The design half of an engineer who cares about craft", es: "La mitad de diseño de un ingeniero al que le importa el detalle" },
+  ],
+  gallery: [
+    { id: "studio-1", ratio: "1 / 1", cap: { en: "Render",          es: "Render"              } },
+    { id: "studio-2", ratio: "1 / 1", cap: { en: "Model",           es: "Modelo"              } },
+    { id: "studio-3", ratio: "1 / 1", cap: { en: "Animation still", es: "Still de animación"  } },
+    { id: "studio-4", ratio: "1 / 1", cap: { en: "Scene",           es: "Escena"              } },
+  ],
+};

@@ -1,0 +1,36 @@
+export const spendant = {
+  slug: "spendant",
+  category: "dev",
+  name: "Spendant",
+  kicker: { en: "Android · Flutter · Finance", es: "Android · Flutter · Finanzas" },
+  device: "mobile",
+  badge: { en: "Mobile App", es: "App Móvil" },
+  tagline: { en: "Spend tracking that works before you overspend.", es: "Control de gastos que actúa antes de que gastes de más." },
+  year: "2026",
+  role: { en: "Design & development", es: "Diseño y desarrollo" },
+  status: { en: "Completed", es: "Terminado" },
+  stack: ["Android", "Finance", "Flutter", "Firebase", "Hive", "Wear OS", "Pinecone"],
+  live: { url: "https://github.com/ISIS3510-202610-Team21/spendant_flutter", label: "GitHub" },
+  video: "", // replace with YouTube video ID when available, e.g. "dQw4w9WgXcQ"
+  overview: [
+    { en: "University students deal with irregular income and spending spread across Nequi, Bancolombia, Google Pay, and cash — but have no real-time visibility into their finances. The result: invisible small expenses that pile up, reactive decisions when money is already gone, and manual budgets abandoned within weeks because they create friction instead of relief. The problem isn't lack of discipline — it's lack of automation, context, and timely feedback.",
+      es: "Los estudiantes universitarios manejan ingresos irregulares y gastos dispersos entre Nequi, Bancolombia, Google Pay y efectivo — sin visibilidad real de su situación financiera. El resultado: gastos pequeños invisibles que se acumulan, decisiones reactivas cuando ya no hay plata, y presupuestos manuales abandonados en semanas porque generan fricción en lugar de alivio. El problema no es falta de disciplina — es falta de automatización, contexto y feedback oportuno." },
+    { en: "Spendant eliminates registration friction entirely. It intercepts notifications from Nequi, Bancolombia, and Google Pay in real time to auto-capture transactions, scans receipts via OCR, and runs a behavioral engine on-device that detects spending hotspots and fires proactive nudges before a bad habit plays out — not after. The architecture is offline-first, so every feature works without internet and syncs to Firestore when reconnected.",
+      es: "Spendant elimina completamente la fricción de registro. Intercepta notificaciones de Nequi, Bancolombia y Google Pay en tiempo real para capturar transacciones automáticamente, escanea recibos por OCR y ejecuta un motor conductual completamente en el dispositivo que detecta hotspots de gasto y dispara alertas preventivas antes de que el mal hábito ocurra — no después. La arquitectura es offline-first: todo funciona sin internet y sincroniza con Firestore al reconectarse." },
+    { en: "Built as a capstone project for the Mobile App Development course (ISIS3510) at Universidad de los Andes — 232 commits across the full development cycle, shipped with a Wear OS companion app for the Google Pixel Watch.",
+      es: "Desarrollado como proyecto final del curso de Desarrollo de Apps Móviles (ISIS3510) en la Universidad de los Andes — 232 commits a lo largo del ciclo completo de desarrollo, con companion app para Wear OS en el Google Pixel Watch." },
+  ],
+  highlights: [
+    { en: "Notification parser captures Nequi, Bancolombia & Google Pay transactions automatically — zero user input required", es: "Parser de notificaciones captura transacciones de Nequi, Bancolombia y Google Pay automáticamente — sin intervención del usuario" },
+    { en: "Habit Fixer: geo-clusters spending history, identifies regret hotspots, and fires a proactive nudge when GPS detects you're nearby at your usual time", es: "Habit Fixer: geo-clusteriza historial de gastos, identifica hotspots de arrepentimiento y dispara una alerta proactiva cuando el GPS detecta que estás cerca en tu horario típico" },
+    { en: "Semantic search via Pinecone vector DB — query spending by concept, not just exact text", es: "Búsqueda semántica con Pinecone — consulta gastos por concepto, no solo texto exacto" },
+    { en: "Wear OS companion with voice-input expense logging and rotary crown scroll support", es: "Companion para Wear OS con registro de gastos por voz y soporte de scroll con corona rotativa" },
+    { en: "Offline-first architecture: Hive local cache + Firestore sync with tombstone pattern to prevent deleted records from resurging", es: "Arquitectura offline-first: cache local Hive + sync con Firestore usando tombstone pattern para evitar que registros eliminados resurjan" },
+    { en: "PDF reports generated in Isolate.run — heavy computation never blocks the UI thread", es: "Reportes PDF generados en Isolate.run — la computación pesada nunca bloquea el hilo de UI" },
+  ],
+  gallery: [
+    { id: "spendant-1", ratio: "9 / 19.5", cap: { en: "Dashboard",    es: "Panel"          } },
+    { id: "spendant-2", ratio: "9 / 19.5", cap: { en: "Transactions", es: "Transacciones"  } },
+    { id: "spendant-3", ratio: "9 / 19.5", cap: { en: "Budgets",      es: "Presupuestos"   } },
+  ],
+};
