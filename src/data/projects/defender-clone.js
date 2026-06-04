@@ -1,0 +1,36 @@
+export const defenderClone = {
+  slug: "defender-clone",
+  category: "games",
+  name: "Defender Clone",
+  kicker: { en: "Python · Pygame · Arcade", es: "Python · Pygame · Arcade" },
+  device: "game",
+  badge: { en: "Game Dev", es: "Videojuego" },
+  tagline: { en: "Williams' 1981 arcade classic, rebuilt from scratch in Python.", es: "El clásico arcade de Williams de 1981, reconstruido desde cero en Python." },
+  year: "2026",
+  role: { en: "Visual, audio, HUD & bonuses", es: "Visual, audio, HUD y bonos" },
+  status: { en: "Published on itch.io", es: "Publicado en itch.io" },
+  stack: ["Python", "pygame-ce", "ECS", "asyncio", "Game Dev"],
+  live: { url: "https://botmrshadow.itch.io/defender-clone-misw-4407-g15", label: "itch.io" },
+  stickers: [
+    { src: "/stickers/python.svg", alt: "Python", rotate: 10, position: { x: 0, y: 20 } },
+  ],
+  overview: [
+    { en: "Faithful reproduction of Williams Electronics' Defender (1981), built as a team of four for the Introduction to Game Development course at Universidad de los Andes. The game ships with 15 escalating waves plus an infinite mode, procedurally generated planets, 6 enemy types with individual AI, and horizontal/vertical wraparound — all running in the browser via WebAssembly.",
+      es: "Reproducción fiel del Defender de Williams Electronics (1981), construida en equipo de cuatro personas como proyecto final del curso de Introducción al Desarrollo de Videojuegos en la Universidad de los Andes. El juego incluye 15 waves escaladas más modo infinito, planetas procedurales, 6 tipos de enemigos con IA individual y wraparound horizontal/vertical — todo corriendo en el navegador vía WebAssembly." },
+    { en: "The architecture is a full Entity-Component-System with 20+ data components and 25 behavior systems, complemented by Service Locator, Command (input), State (enemy/astronaut AI), and Scene patterns. My role covered the entire visual layer, audio, HUD, and bonus systems.",
+      es: "La arquitectura es un Entity-Component-System completo con más de 20 componentes de datos y 25 sistemas de comportamiento, complementado con patrones Service Locator, Command (input), State (IA de enemigos y astronautas) y Scene. Mi rol abarcó toda la capa visual, audio, HUD y sistemas de bonos." },
+  ],
+  highlights: [
+    { en: "Particle system with multi-step color interpolation and radial explosions per enemy type", es: "Sistema de partículas con interpolación de color multi-paso y explosiones radiales por tipo de enemigo" },
+    { en: "Real-time scrolling minimap centered on the player with color-coded entity dots", es: "Minimapa scrolling en tiempo real centrado en el jugador con dots de color por entidad" },
+    { en: "Attraction mode with scripted gameplay demo using diagonal intercept calculation and enemy gallery", es: "Modo atracción con demo de gameplay scriptada usando cálculo de intercepción diagonal y galería de enemigos" },
+    { en: "Sprite sheet animation, animated player thruster and rainbow bullet trail", es: "Animación por sprite sheets, propulsor animado del jugador y trail de bala con arcoíris rotante" },
+    { en: "ECS architecture: 20+ data components, 25 behavior systems, State pattern for enemy AI", es: "Arquitectura ECS: más de 20 componentes de datos, 25 sistemas de comportamiento, patrón State para IA de enemigos" },
+    { en: "Smart bomb, persistent high score with arcade-style name entry, rewards every 10k pts, gamepad support", es: "Smart bomb, high score persistente con entrada de nombre estilo arcade, recompensas cada 10k pts, soporte de gamepad" },
+  ],
+  gallery: [
+    { id: "defender-1", ratio: "16 / 9", span: "full", cap: { en: "Gameplay",         es: "Gameplay"          } },
+    { id: "defender-2", ratio: "16 / 9", span: "half", cap: { en: "Minimap & HUD",    es: "Minimapa y HUD"    } },
+    { id: "defender-3", ratio: "16 / 9", span: "half", cap: { en: "Attraction mode",  es: "Modo atracción"    } },
+  ],
+};

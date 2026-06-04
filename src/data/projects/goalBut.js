@@ -1,0 +1,35 @@
+export const goalBut = {
+  slug: "goalBut",
+  category: "games",
+  name: "GoalBut",
+  kicker: { en: "Godot · Game Jam · 24h", es: "Godot · Game Jam · 24h" },
+  device: "game",
+  badge: { en: "Game Jam", es: "Game Jam" },
+  tagline: { en: "A football match where every goal changes the rules.", es: "Un partido de fútbol donde cada gol cambia las reglas." },
+  year: "2026",
+  role: { en: "Design & development", es: "Diseño y desarrollo" },
+  status: { en: "Game jam entry — Uniandes EA", es: "Entrada game jam — Uniandes EA" },
+  stack: ["Godot 4", "GDScript", "2D", "Pixel Art", "Local Multiplayer"],
+  live: { url: "https://botmrshadow.itch.io/goalbut", label: "itch.io" },
+  stickers: [
+    { src: "/stickers/godot.svg", alt: "Godot", rotate: -8, position: { x: 0, y: 20 } },
+  ],
+  overview: [
+    { en: "GoalBut is a 2D local multiplayer football game built in 24 hours for the Uniandes EA Game Jam (theme: Reinventing Competition). Two players compete on a top-down pitch — but not every goal counts the same. Each round activates a hidden condition: score while standing still, score an own goal, play with inverted controls, score from halfway, and more. The real challenge is figuring out the active condition while still fighting for the ball.",
+      es: "GoalBut es un juego de fútbol 2D multijugador local construido en 24 horas para la Game Jam Uniandes EA (tema: Reinventing Competition). Dos jugadores compiten en una cancha vista desde arriba — pero no todos los goles valen igual. Cada ronda activa una condición oculta: marcar quieto, hacer autogol, jugar con controles invertidos, anotar desde la mitad, entre otras. El verdadero reto es descubrir la condición activa mientras se disputa la pelota." },
+    { en: "Every 3 goals the secret mechanic is revealed — and immediately locked for the player who abused it most, giving the opponent a final chance to score with it before the next round begins. Developed by a team of four with pixel art visuals and an original soundtrack composed in 24 hours.",
+      es: "Cada 3 goles la mecánica secreta se revela — y se bloquea inmediatamente para el jugador que más la abusó, dándole al oponente una última oportunidad de anotar con ella antes de que empiece la siguiente ronda. Desarrollado en equipo de cuatro con arte en pixel art y una banda sonora original compuesta en 24 horas." },
+  ],
+  highlights: [
+    { en: "Hidden win condition per round — players must discover it while competing", es: "Condición de victoria oculta por ronda — los jugadores deben descubrirla mientras compiten" },
+    { en: "Mechanic lock system: abused rules get blocked, giving the trailing player a catch-up window", es: "Sistema de bloqueo: las mecánicas abusadas se bloquean, dando una ventana de catch-up al jugador atrás" },
+    { en: "Conditions include: stand still to score, own goal, inverted controls, score from midfield", es: "Condiciones incluyen: quieto para anotar, autogol, controles invertidos, anotar desde la mitad" },
+    { en: "Original pixel art and soundtrack composed during the 24-hour jam", es: "Pixel art original y banda sonora compuesta durante las 24 horas del jam" },
+    { en: "Built on Godot 4.6 with GDScript — full game loop shipped in 24 hours", es: "Construido en Godot 4.6 con GDScript — loop completo del juego entregado en 24 horas" },
+  ],
+  gallery: [
+    { id: "goalBut-1", ratio: "16 / 9", span: "full", cap: { en: "Gameplay",          es: "Gameplay"            } },
+    { id: "goalBut-2", ratio: "16 / 9", span: "half", cap: { en: "Hidden mechanic reveal", es: "Revelación de mecánica" } },
+    { id: "goalBut-3", ratio: "16 / 9", span: "half", cap: { en: "Pixel art / arena",  es: "Pixel art / cancha"  } },
+  ],
+};

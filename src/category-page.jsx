@@ -113,11 +113,18 @@ export function CategoryPage({ catId }) {
             <span style={{ color: 'var(--fg-mute)' }}>dev</span>
           </a>
           <div className="detail-nav-right">
-            <a href="#" className="back-link" onClick={goHome}>
-              {Icon.back({ style: { width: 15, height: 15 } })} {t.detail.all}
-            </a>
+            {categories.filter(c => c.id !== 'all').map((c, i) => (
+              <a key={c.id}
+                 href={`#/cat/${c.id}`}
+                 className={`cat-color-${c.id}${c.id === catId ? ' active' : ''}`}
+                 style={{ fontFamily: 'var(--font-mono)', fontSize: 13, padding: '8px 10px', borderRadius: 7, background: c.id === catId ? 'var(--surface-2)' : 'none' }}
+                 onClick={(e) => { e.preventDefault(); window.location.hash = '/cat/' + c.id; }}>
+                <span style={{ marginRight: 4, opacity: 0.6, fontSize: 11 }}>0{i + 1}.</span>{c.label}
+              </a>
+            ))}
             <ThemeToggle />
             <LangToggle />
+            <a className="nav-cta" href="assets/Sergio_Castano_CV.pdf" download>CV ↓</a>
           </div>
         </div>
       </nav>

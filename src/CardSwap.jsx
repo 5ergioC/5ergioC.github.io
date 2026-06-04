@@ -113,6 +113,10 @@ const CardSwap = ({
       {/* hover zone covers only the front card's resting position */}
       <div
         ref={hoverZone}
+        onClick={() => {
+          const frontIdx = order.current[0];
+          refs[frontIdx]?.current?.click();
+        }}
         style={{
           position: 'absolute',
           top: '50%',
@@ -122,6 +126,7 @@ const CardSwap = ({
           transform: 'translate(-50%, -50%)',
           zIndex: 999,
           pointerEvents: 'auto',
+          cursor: 'pointer',
         }}
       />
     </div>

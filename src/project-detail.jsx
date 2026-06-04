@@ -4,7 +4,7 @@
 import { useEffect } from 'react';
 import { Reveal, Magnetic, DecryptText } from './fx';
 import { useLang, STR, ThemeToggle, LangToggle } from './i18n';
-import { Icon, getPROJECT, getPROJECTS } from './data';
+import { Icon, getPROJECT, getPROJECTS, getCATEGORIES } from './data';
 import { Turntable } from './turntable';
 import { scrollToId } from './utils';
 import StickerPeel from './StickerPeel';
@@ -93,7 +93,8 @@ export function ProjectDetail({ slug }) {
     window.location.hash = "";
     setTimeout(() => scrollToId("projects", false), 40);
   };
-  const others = getPROJECTS(lang).filter((x) => x.slug !== slug);
+  const others     = getPROJECTS(lang).filter((x) => x.slug !== slug);
+  const categories = getCATEGORIES(lang).filter(c => c.id !== 'all');
 
   return (
     <div className="detail">
@@ -103,7 +104,15 @@ export function ProjectDetail({ slug }) {
             <span className="dot"></span>SC<span className="slash">/</span><span style={{ color: "var(--fg-mute)" }}>dev</span>
           </a>
           <div className="detail-nav-right">
-            <a href="#" className="back-link" onClick={goHome}>{Icon.back({ style: { width: 15, height: 15 } })} {t.all}</a>
+            {categories.map((c, i) => (
+              <a key={c.id}
+                 href={`#/cat/${c.id}`}
+                 className={`cat-color-${c.id}${p.category === c.id ? ' active' : ''}`}
+                 style={{ fontFamily: 'var(--font-mono)', fontSize: 13, padding: '8px 10px', borderRadius: 7, background: p.category === c.id ? 'var(--surface-2)' : 'none' }}
+                 onClick={(e) => { e.preventDefault(); window.location.hash = '/cat/' + c.id; }}>
+                <span style={{ marginRight: 4, opacity: 0.6, fontSize: 11 }}>0{i + 1}.</span>{c.label}
+              </a>
+            ))}
             <ThemeToggle />
             <LangToggle />
             <a className="nav-cta" href="assets/Sergio_Castano_CV.pdf" download>CV ↓</a>
@@ -138,8 +147,8 @@ export function ProjectDetail({ slug }) {
                 imageSrc={s.src}
                 width={190}
                 rotate={s.rotate ?? (i % 2 === 0 ? -8 : 10)}
-                peelBackHoverPct={22}
-                peelBackActivePct={38}
+                peelBackHoverPct={32}
+                peelBackActivePct={50}
                 peelDirection={s.peelDirection ?? 0}
                 shadowIntensity={0.4}
                 lightingIntensity={0.1}

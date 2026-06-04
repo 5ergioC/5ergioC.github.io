@@ -12,6 +12,7 @@ import { scrollToId } from './utils';
 
 const NAV_IDS = ["about", "experience", "projects", "skills", "contact"];
 const goProject = (slug) => { window.location.hash = "/p/" + slug; };
+const CAT_IDS   = ["dev", "cyber", "design", "games"];
 
 /* ---------- Navbar ---------- */
 export function Navbar() {
@@ -31,7 +32,7 @@ export function Navbar() {
   useEffect(() => {
     const io = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); }),
-      { rootMargin: "-45% 0px -50% 0px" }
+      { rootMargin: "-25% 0px -25% 0px" }
     );
     NAV_IDS.forEach((id) => { const el = document.getElementById(id); if (el) io.observe(el); });
     return () => io.disconnect();
