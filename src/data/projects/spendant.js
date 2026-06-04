@@ -12,6 +12,10 @@ export const spendant = {
   stack: ["Android", "Finance", "Flutter", "Firebase", "Hive", "Wear OS", "Pinecone"],
   live: { url: "https://github.com/ISIS3510-202610-Team21/spendant_flutter", label: "GitHub" },
   video: "", // replace with YouTube video ID when available, e.g. "dQw4w9WgXcQ"
+  stickers: [
+    { src: "/stickers/flutter.svg", alt: "Flutter", rotate:  12, position: { x: 100, y: 180 } },
+    { src: "/stickers/android.svg", alt: "Android", rotate: -8,  position: { x: 0,   y: 20 } },
+  ],
   overview: [
     { en: "University students deal with irregular income and spending spread across Nequi, Bancolombia, Google Pay, and cash — but have no real-time visibility into their finances. The result: invisible small expenses that pile up, reactive decisions when money is already gone, and manual budgets abandoned within weeks because they create friction instead of relief. The problem isn't lack of discipline — it's lack of automation, context, and timely feedback.",
       es: "Los estudiantes universitarios manejan ingresos irregulares y gastos dispersos entre Nequi, Bancolombia, Google Pay y efectivo — sin visibilidad real de su situación financiera. El resultado: gastos pequeños invisibles que se acumulan, decisiones reactivas cuando ya no hay plata, y presupuestos manuales abandonados en semanas porque generan fricción en lugar de alivio. El problema no es falta de disciplina — es falta de automatización, contexto y feedback oportuno." },

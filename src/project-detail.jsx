@@ -7,6 +7,7 @@ import { useLang, STR, ThemeToggle, LangToggle } from './i18n';
 import { Icon, getPROJECT, getPROJECTS } from './data';
 import { Turntable } from './turntable';
 import { scrollToId } from './utils';
+import StickerPeel from './StickerPeel';
 
 function Slot({ g, shape = "rounded", radius = 14 }) {
   return (
@@ -129,6 +130,24 @@ export function ProjectDetail({ slug }) {
             </div>
           )}
         </div>
+        {p.stickers && p.stickers.length > 0 && (
+          <div className="sticker-zone">
+            {p.stickers.map((s, i) => (
+              <StickerPeel
+                key={i}
+                imageSrc={s.src}
+                width={190}
+                rotate={s.rotate ?? (i % 2 === 0 ? -8 : 10)}
+                peelBackHoverPct={22}
+                peelBackActivePct={38}
+                peelDirection={s.peelDirection ?? 0}
+                shadowIntensity={0.4}
+                lightingIntensity={0.1}
+                initialPosition={s.position ?? { x: i * 155, y: i * 30 }}
+              />
+            ))}
+          </div>
+        )}
       </header>
 
       <div className="wrap"><hr className="divider" /></div>

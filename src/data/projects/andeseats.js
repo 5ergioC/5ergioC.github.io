@@ -10,6 +10,9 @@ export const andeseats = {
   role: { en: "Full-stack developer", es: "Desarrollador full-stack" },
   status: { en: "Live in production", es: "En vivo, en producción" },
   live: { label: "andeseats.co", url: "https://andeseats.co" },
+  stickers: [
+    { src: "/stickers/react.svg", alt: "React", rotate: -10, position: { x: 0, y: 0 } },
+  ],
   stack: ["React", "Web App", "REST APIs", "Production"],
   overview: [
     { en: "AndesEats helps university students find, compare and decide where to eat around campus, turning the daily \"where do we go?\" into a couple of taps.",

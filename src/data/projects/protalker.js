@@ -10,6 +10,9 @@ export const protalker = {
   role: { en: "Engineering team project", es: "Proyecto de equipo de ingeniería" },
   status: { en: "Prototype, not publicly deployed", es: "Prototipo, no desplegado públicamente" },
   stack: ["AI / NLP", "Python", "Real-time", "Speech"],
+  stickers: [
+    { src: "/stickers/python.svg", alt: "Python", rotate: 10, position: { x: 0, y: 0 } },
+  ],
   overview: [
     { en: "ProTalker started as a mid-career engineering course project and became one I genuinely loved. It listens to a conversation and returns real-time feedback to help people communicate more clearly and confidently.",
       es: "ProTalker empezó como un proyecto de un curso de ingeniería de mitad de carrera y terminó siendo uno que de verdad disfruté. Escucha una conversación y devuelve retroalimentación en tiempo real para ayudar a comunicarse con más claridad y confianza." },

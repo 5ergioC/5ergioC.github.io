@@ -739,6 +739,36 @@ footer .meta .accent { color: var(--purple); }
 .dm-v { font-size: 15px; color: var(--fg); }
 .detail-actions { margin-top: 34px; }
 
+/* sticker zone — right side of detail hero */
+.sticker-zone {
+  position: absolute;
+  top: 50%;
+  right: clamp(280px, 30vw, 460px);
+  transform: translateY(-50%);
+  width: 320px;
+  height: 450px;
+  pointer-events: none;
+  z-index: 5; /* above .detail-hero .wrap (z-index:1) so hover works */
+}
+.sticker-zone .draggable {
+  pointer-events: auto;
+  z-index: 10;
+}
+@media (max-width: 960px) {
+  .detail-hero {
+    padding-bottom: 180px;
+  }
+  .sticker-zone {
+    top: auto;
+    bottom: 16px;
+    right: 50%;
+    transform: translateX(50%) scale(0.65);
+    transform-origin: bottom center;
+    width: 360px;
+    height: 220px;
+  }
+}
+
 .detail-body { padding: 60px 0 30px; }
 .detail-grid { display: grid; grid-template-columns: 1.55fr 1fr; gap: 56px; align-items: start; }
 .detail-overview .eyebrow { margin-bottom: 20px; }

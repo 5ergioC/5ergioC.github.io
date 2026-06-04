@@ -10,6 +10,9 @@ export const studio = {
   role: { en: "Design & creation", es: "Diseño y creación" },
   status: { en: "Selected coursework", es: "Trabajos seleccionados" },
   stack: ["Blender", "Adobe Suite", "Modeling", "Animation"],
+  stickers: [
+    { src: "/stickers/blender.svg", alt: "Blender", rotate: -6, position: { x: 0, y: 0 } },
+  ],
   turntable: { id: "studio-360", accent: 330 },
   overview: [
     { en: "Alongside engineering, my Minor in Design & Creation pushed me into 3D modeling and animation, building objects, scenes and short motion pieces in Blender and the Adobe suite.",
