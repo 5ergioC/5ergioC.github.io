@@ -11,8 +11,8 @@ import StarBorder from './StarBorder';
 import { scrollToId } from './utils';
 
 const NAV_IDS = ["about", "experience", "projects", "skills", "contact"];
-const goProject = (slug) => { window.location.hash = "/p/" + slug; };
 const CAT_IDS   = ["dev", "cyber", "design", "games"];
+const goCategory = (id) => { window.location.hash = '/cat/' + id; };
 
 /* ---------- Navbar ---------- */
 export function Navbar() {
@@ -232,8 +232,6 @@ function CatSwapCard({ cat, projects, lang }) {
     </div>
   );
 }
-
-const goCategory = (id) => { window.location.hash = '/cat/' + id; };
 
 /* responsive card dimensions — rendered at native size, no CSS scale */
 function useCardSize() {

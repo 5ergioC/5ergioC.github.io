@@ -1,14 +1,5 @@
-.venv/
 node_modules/
-__pycache__/
-*.pyc
-*.pyo
 .DS_Store
 dist/
 .env
-output/
-content/
-theme/
-pelicanconf.py
-publishconf.py
 *.state.json
