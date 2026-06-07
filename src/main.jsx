@@ -1,11 +1,18 @@
-import { useState, useEffect, StrictMode } from 'react';
+import { useState, useEffect, lazy, Suspense, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import './image-slot.js';
 import './styles.css';
 import { Home } from './sections';
-import { ProjectDetail } from './project-detail';
-import { CategoryPage } from './category-page';
 import { PROJECTS, CATEGORIES } from './data';
+
+// Detail + category routes are split out of the initial bundle — the home
+// page (what everyone lands on) no longer ships project-detail, turntable,
+// StickerPeel or the image-slot custom element. They load on navigation.
+const ProjectDetail = lazy(() =>
+  import('./project-detail').then((m) => ({ default: m.ProjectDetail }))
+);
+const CategoryPage = lazy(() =>
+  import('./category-page').then((m) => ({ default: m.CategoryPage }))
+);
 
 function parseHash() {
   const h = (window.location.hash || "").replace(/^#\/?/, "");
@@ -31,11 +38,19 @@ function App() {
 
   if (route.view === "project") {
     const exists = PROJECTS.some((x) => x.slug === route.slug);
-    if (exists) return <ProjectDetail slug={route.slug} />;
+    if (exists) return (
+      <Suspense fallback={null}>
+        <ProjectDetail slug={route.slug} />
+      </Suspense>
+    );
   }
   if (route.view === "category") {
     const exists = CATEGORIES.some((x) => x.id === route.catId);
-    if (exists) return <CategoryPage catId={route.catId} />;
+    if (exists) return (
+      <Suspense fallback={null}>
+        <CategoryPage catId={route.catId} />
+      </Suspense>
+    );
   }
   return <Home />;
 }

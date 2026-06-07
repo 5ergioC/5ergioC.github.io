@@ -8,8 +8,29 @@ import { Icon, getPROJECT, getPROJECTS, getCATEGORIES } from './data';
 import { Turntable } from './turntable';
 import { scrollToId } from './utils';
 import StickerPeel from './StickerPeel';
+import './image-slot.js';
 
+// Production image: static, lazy, zero-CLS (parent frame sets aspect-ratio).
+// Pass `srcSet`/`sizes` on the gallery item when responsive variants exist.
+function Figure({ g }) {
+  return (
+    <img
+      src={g.src}
+      srcSet={g.srcSet}
+      sizes={g.sizes}
+      alt={g.alt || g.cap || ""}
+      loading="lazy"
+      decoding="async"
+      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+    />
+  );
+}
+
+// Bridge: real committed image when the gallery item has `src`, otherwise the
+// drop-to-fill <image-slot> authoring placeholder. Once screenshots land in
+// /public and items get a `src`, every gallery renders <Figure> automatically.
 function Slot({ g, shape = "rounded", radius = 14 }) {
+  if (g.src) return <Figure g={g} />;
   return (
     <image-slot
       id={g.id}
