@@ -1,0 +1,19 @@
+<svg fill="#FFFFFF" role="img" viewBox="-5 -5 34 34" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="s" x="-50%" y="-50%" width="200%" height="200%">
+      <!-- 1. Expand alpha for border -->
+      <feMorphology in="SourceAlpha" operator="dilate" radius="2.8" result="d"/>
+      <!-- 2. Sub-pixel anti-alias (0.15u ≈ <1px — smooths diagonal edges, not visible as blur) -->
+      <feGaussianBlur in="d" stdDeviation="0.15" result="d_aa"/>
+      <!-- 3. Fill white -->
+      <feFlood flood-color="white" result="wf"/>
+      <feComposite in="wf" in2="d_aa" operator="in" result="border"/>
+      <!-- 4. Drop shadow from dilated shape -->
+      <feGaussianBlur in="d" stdDeviation="2.5" result="sb"/>
+      <feFlood flood-color="#000" flood-opacity="0.18" result="sf"/>
+      <feComposite in="sf" in2="sb" operator="in" result="shadow"/>
+      <feOffset in="shadow" dx="0" dy="1" result="shoff"/>
+      <!-- 5. Merge -->
+      <feMerge><feMergeNode in="shoff"/><feMergeNode in="border"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs><title>ElevenLabs</title><path d="M4.6035 0v24h4.9317V0zm9.8613 0v24h4.9317V0z"/></svg>
