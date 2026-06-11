@@ -3,12 +3,13 @@
    ============================================================ */
 import { useEffect } from 'react';
 import { Reveal, Magnetic, DecryptText } from './fx';
-import { useLang, STR, ThemeToggle, LangToggle } from './i18n';
+import { useLang, STR, ThemeToggle, LangToggle, L } from './i18n';
 import { Icon, getPROJECT, getPROJECTS, getCATEGORIES } from './data';
 import { Turntable } from './turntable';
 import { scrollToId } from './utils';
 import StickerPeel from './StickerPeel';
-import './image-slot.js';
+
+const CAT_HUE = { dev: '220', cyber: '150', design: '286', games: '55' };
 
 // Production image: static, lazy, zero-CLS (parent frame sets aspect-ratio).
 // Pass `srcSet`/`sizes` on the gallery item when responsive variants exist.
@@ -26,29 +27,24 @@ function Figure({ g }) {
   );
 }
 
-// Bridge: real committed image when the gallery item has `src`, otherwise the
-// drop-to-fill <image-slot> authoring placeholder. Once screenshots land in
-// /public and items get a `src`, every gallery renders <Figure> automatically.
-function Slot({ g, shape = "rounded", radius = 14 }) {
+// Bridge: real committed image when the gallery item has `src`, otherwise a
+// static placeholder. Once screenshots land in /public and items get a
+// `src`, every gallery renders <Figure> automatically.
+function Slot({ g }) {
   if (g.src) return <Figure g={g} />;
-  return (
-    <image-slot
-      id={g.id}
-      shape={shape}
-      radius={String(radius)}
-      placeholder={g.cap}
-      style={{ width: "100%", height: "100%", display: "block" }}
-    />
-  );
+  return <div className="img-placeholder" />;
 }
 
 function VideoEmbed({ p }) {
   if (!p.video) return null;
+  // p.videoRatio: e.g. "9 / 16" for Shorts/vertical recordings. Defaults to 16/9.
+  const ratio = p.videoRatio || "16 / 9";
+  const isVertical = ratio.replace(/\s/g, '').startsWith('9/');
   return (
-    <div className="video-wrap gallery-video">
+    <div className={`video-wrap gallery-video${isVertical ? ' vertical' : ''}`} style={{ '--video-ratio': ratio }}>
       <iframe
         className="demo-video"
-        src={`https://www.youtube.com/embed/${p.video}`}
+        src={`https://www.youtube.com/embed/${p.video}?vq=hd1080`}
         title={p.name + " demo"}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
@@ -65,7 +61,7 @@ function Gallery({ p }) {
         <div className="gallery-phones">
           {p.gallery.map((g) => (
             <figure className="phone" key={g.id}>
-              <div className="phone-frame"><div className="phone-notch"></div><Slot g={g} radius={26} /></div>
+              <div className="phone-frame"><div className="phone-notch"></div><Slot g={g} /></div>
               <figcaption>{g.cap}</figcaption>
             </figure>
           ))}
@@ -215,7 +211,6 @@ export function ProjectDetail({ slug }) {
           <Reveal className="gallery-wrap">
             <div className="gallery-head">
               <div className="eyebrow"><span className="num">·</span> <DecryptText onView key={lang + slug} text={t.gallery} /></div>
-              <span className="gallery-hint">{t.hint}</span>
             </div>
             <Gallery p={p} />
           </Reveal>
@@ -228,11 +223,14 @@ export function ProjectDetail({ slug }) {
           <div className="more-grid">
             {others.map((o) => (
               <a key={o.slug} href={`#/p/${o.slug}`} className="more-card"
+                 style={{ '--cat-hue': CAT_HUE[o.category] || '260' }}
                  onClick={(e) => { e.preventDefault(); window.location.hash = "/p/" + o.slug; }}>
-                <div className={`more-glyph dev-${o.device}`}>{o.name.charAt(0)}</div>
+                <div className="more-glyph">
+                  {o.glyph ? <img src={o.glyph} alt="" loading="lazy" decoding="async" /> : o.name.charAt(0)}
+                </div>
                 <div>
                   <div className="more-name">{o.name}</div>
-                  <div className="more-kicker">{o.kicker}</div>
+                  <div className="more-kicker">{L(o.tag, lang)}</div>
                 </div>
                 <span className="more-arrow">→</span>
               </a>

@@ -1,9 +1,12 @@
 export const goalBut = {
   slug: "goalBut",
   category: "games",
+  tag: { en: "Football", es: "Fútbol" },
   name: "GoalBut",
   kicker: { en: "Godot · Game Jam · 24h", es: "Godot · Game Jam · 24h" },
   device: "game",
+  cover: "/images/goalbut-cover.png",
+  glyph: "/images/goalbut-glyph.webp",
   badge: { en: "Game Jam", es: "Game Jam" },
   tagline: { en: "A football match where every goal changes the rules.", es: "Un partido de fútbol donde cada gol cambia las reglas." },
   year: "2026",

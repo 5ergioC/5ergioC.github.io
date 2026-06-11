@@ -1,9 +1,12 @@
 export const defenderClone = {
   slug: "defender-clone",
   category: "games",
+  tag: { en: "Arcade", es: "Arcade" },
   name: "Defender Clone",
   kicker: { en: "Python · Pygame · Arcade", es: "Python · Pygame · Arcade" },
   device: "game",
+  cover: "/images/defender-cover.webp",
+  glyph: "/images/defender-glyph.webp",
   badge: { en: "Game Dev", es: "Videojuego" },
   tagline: { en: "Williams' 1981 arcade classic, rebuilt from scratch in Python.", es: "El clásico arcade de Williams de 1981, reconstruido desde cero en Python." },
   year: "2026",
@@ -28,9 +31,10 @@ export const defenderClone = {
     { en: "ECS architecture: 20+ data components, 25 behavior systems, State pattern for enemy AI", es: "Arquitectura ECS: más de 20 componentes de datos, 25 sistemas de comportamiento, patrón State para IA de enemigos" },
     { en: "Smart bomb, persistent high score with arcade-style name entry, rewards every 10k pts, gamepad support", es: "Smart bomb, high score persistente con entrada de nombre estilo arcade, recompensas cada 10k pts, soporte de gamepad" },
   ],
+  video: "5slXS9fPyRM",
   gallery: [
-    { id: "defender-1", ratio: "16 / 9", span: "full", cap: { en: "Gameplay",         es: "Gameplay"          } },
-    { id: "defender-2", ratio: "16 / 9", span: "half", cap: { en: "Minimap & HUD",    es: "Minimapa y HUD"    } },
-    { id: "defender-3", ratio: "16 / 9", span: "half", cap: { en: "Attraction mode",  es: "Modo atracción"    } },
+    { id: "defender-1", ratio: "955 / 757", span: "full", src: "/images/defender-gameplay.png",    alt: "Defender Clone gameplay",       cap: { en: "Gameplay",        es: "Gameplay"           } },
+    { id: "defender-2", ratio: "956 / 758", span: "half", src: "/images/defender-title.png",       alt: "Defender Clone title screen",   cap: { en: "Title screen",    es: "Pantalla de inicio" } },
+    { id: "defender-3", ratio: "951 / 757", span: "half", src: "/images/defender-attraction.png",  alt: "Defender Clone attraction mode", cap: { en: "Attraction mode", es: "Modo atracción"     } },
   ],
 };

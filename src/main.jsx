@@ -6,7 +6,7 @@ import { PROJECTS, CATEGORIES } from './data';
 
 // Detail + category routes are split out of the initial bundle — the home
 // page (what everyone lands on) no longer ships project-detail, turntable,
-// StickerPeel or the image-slot custom element. They load on navigation.
+// or StickerPeel. They load on navigation.
 const ProjectDetail = lazy(() =>
   import('./project-detail').then((m) => ({ default: m.ProjectDetail }))
 );

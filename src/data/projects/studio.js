@@ -1,6 +1,7 @@
 export const studio = {
   slug: "studio",
   category: "design",
+  tag: { en: "3D", es: "3D" },
   name: "3D & Motion",
   kicker: { en: "Design Minor", es: "Minor de Diseño" },
   device: "cube",

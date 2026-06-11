@@ -1,9 +1,12 @@
 export const spendant = {
   slug: "spendant",
   category: "dev",
+  tag: { en: "Finance", es: "Finanzas" },
   name: "Spendant",
   kicker: { en: "Android · Flutter · Finance", es: "Android · Flutter · Finanzas" },
   device: "mobile",
+  cover: "/images/spendant-cover.webp",
+  glyph: "/images/spendant-glyph.webp",
   badge: { en: "Mobile App", es: "App Móvil" },
   tagline: { en: "Spend tracking that works before you overspend.", es: "Control de gastos que actúa antes de que gastes de más." },
   year: "2026",
@@ -11,7 +14,8 @@ export const spendant = {
   status: { en: "Completed", es: "Terminado" },
   stack: ["Android", "Finance", "Flutter", "Firebase", "Hive", "Wear OS", "Pinecone"],
   live: { url: "https://github.com/ISIS3510-202610-Team21/spendant_flutter", label: "GitHub" },
-  video: "", // replace with YouTube video ID when available, e.g. "dQw4w9WgXcQ"
+  video: "peYswc80m9s",
+  videoRatio: "9 / 20",
   stickers: [
     { src: "/stickers/flutter.svg", alt: "Flutter", rotate:  12, position: { x: 100, y: 180 } },
     { src: "/stickers/android.svg", alt: "Android", rotate: -8,  position: { x: 0,   y: 20 } },
@@ -33,8 +37,8 @@ export const spendant = {
     { en: "PDF reports generated in Isolate.run — heavy computation never blocks the UI thread", es: "Reportes PDF generados en Isolate.run — la computación pesada nunca bloquea el hilo de UI" },
   ],
   gallery: [
-    { id: "spendant-1", ratio: "9 / 19.5", cap: { en: "Dashboard",    es: "Panel"          } },
-    { id: "spendant-2", ratio: "9 / 19.5", cap: { en: "Transactions", es: "Transacciones"  } },
-    { id: "spendant-3", ratio: "9 / 19.5", cap: { en: "Budgets",      es: "Presupuestos"   } },
+    { id: "spendant-1", ratio: "9 / 20", src: "/images/spendant-home.webp",   alt: "Spendant Home screen",   cap: { en: "Home",   es: "Inicio"   } },
+    { id: "spendant-2", ratio: "9 / 20", src: "/images/spendant-income.webp", alt: "Spendant Income screen",  cap: { en: "Income", es: "Ingresos" } },
+    { id: "spendant-3", ratio: "9 / 20", src: "/images/spendant-goals.webp",  alt: "Spendant Goals screen",   cap: { en: "Goals",  es: "Metas"    } },
   ],
 };

@@ -1,15 +1,19 @@
 export const andeseats = {
   slug: "andeseats",
   category: "dev",
+  tag: { en: "Food", es: "Comida" },
   name: "AndesEats",
   kicker: "andeseats.co",
   device: "web",
+  cover: "/images/andeseats-cover.webp",
+  coverPosition: "100% center",
+  glyph: "/images/andeseats-glyph.webp",
   badge: { en: "Live Product", es: "En Producción" },
   tagline: { en: "Restaurant discovery for university students.", es: "Descubre dónde comer cerca del campus." },
   year: "2025",
   role: { en: "Full-stack developer", es: "Desarrollador full-stack" },
   status: { en: "Live in production", es: "En vivo, en producción" },
-  live: { label: "andeseats.co", url: "https://andeseats.co" },
+  live: { label: "andeseats.co", url: "https://www.andeseats.co" },
   stickers: [
     { src: "/stickers/react.svg", alt: "React", rotate: -10, position: { x: 0, y: 0 } },
   ],
@@ -26,8 +30,8 @@ export const andeseats = {
     { en: "Designed end to end, from UX flows to frontend implementation", es: "Diseñado de principio a fin, desde los flujos de UX hasta el frontend" },
   ],
   gallery: [
-    { id: "andeseats-1", ratio: "16 / 9",  span: "full", cap: { en: "Home / discovery",    es: "Inicio / descubrimiento"   } },
-    { id: "andeseats-2", ratio: "16 / 11", span: "half", cap: { en: "Restaurant listing",  es: "Listado de restaurantes"   } },
-    { id: "andeseats-3", ratio: "16 / 11", span: "half", cap: { en: "Detail view",         es: "Vista de detalle"          } },
+    { id: "andeseats-1", ratio: "1852 / 914", span: "full", src: "/images/andeseats-home.webp",     alt: "AndesEats home / discovery view",  cap: { en: "Home / discovery",   es: "Inicio / descubrimiento"   } },
+    { id: "andeseats-2", ratio: "1876 / 917", span: "half", src: "/images/andeseats-listing.webp",  alt: "AndesEats restaurant listing",     cap: { en: "Restaurant listing", es: "Listado de restaurantes"   } },
+    { id: "andeseats-3", ratio: "1876 / 917", span: "half", src: "/images/andeseats-detail.webp",   alt: "AndesEats restaurant detail view",  cap: { en: "Detail view",        es: "Vista de detalle"          } },
   ],
 };

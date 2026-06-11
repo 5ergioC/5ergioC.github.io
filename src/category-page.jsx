@@ -14,17 +14,19 @@ const goHome    = (e)    => { e && e.preventDefault(); window.location.hash = ''
 const CAT_HUE = { dev: '220', cyber: '150', design: '286', games: '55' };
 
 /* ---------- mini project card ---------- */
-function CatCard({ p, t }) {
+function CatCard({ p, t, hue }) {
   const spot = useSpotlight();
   return (
     <a
       className="card cat-card"
+      style={{ '--cat-hue': hue }}
       href={`#/p/${p.slug}`}
       onMouseMove={spot}
       onClick={(e) => { e.preventDefault(); goProject(p.slug); }}
     >
       <div className={`cat-card-cover dev-${p.device} cat-color-${p.category}`}>
         <div className="cover-grid" />
+        {p.cover && <img className="cover-img" src={p.cover} alt={p.name} loading="lazy" decoding="async" />}
         <div className="cover-glyph">{p.name.charAt(0)}</div>
       </div>
       <div className="card-body">
@@ -46,7 +48,7 @@ function CatCard({ p, t }) {
 /* ---------- Featured hero ---------- */
 function FeaturedProject({ p, t, hue }) {
   return (
-    <Magnetic strength={0.06}>
+    <Magnetic strength={0.06} className="cf-mag">
       <a
         className="cat-featured"
         style={{ '--cat-hue': hue }}
@@ -64,8 +66,17 @@ function FeaturedProject({ p, t, hue }) {
             <span>{p.role}</span>
           </div>
           <div className="cf-stack">{p.stack.map(s => <span key={s}>{s}</span>)}</div>
+          <span className="cf-arrow">{Icon.arrow({ width: 22, height: 22 })}</span>
         </div>
-        <span className="cf-arrow">{Icon.arrow({ width: 22, height: 22 })}</span>
+        {p.cover ? (
+          <div className="cf-cover">
+            <img src={p.cover} alt="" loading="lazy" decoding="async" style={p.coverPosition ? { objectPosition: p.coverPosition } : undefined} />
+          </div>
+        ) : (
+          <div className="cf-cover cf-cover-fallback" aria-hidden="true">
+            <span className="cf-fallback-glyph">{p.name.charAt(0)}</span>
+          </div>
+        )}
       </a>
     </Magnetic>
   );
@@ -176,7 +187,7 @@ export function CategoryPage({ catId }) {
             <div className="proj-grid cat-grid">
               {rest.map((p, i) => (
                 <Reveal key={p.slug} delay={i * 70}>
-                  <CatCard p={p} t={t.proj} />
+                  <CatCard p={p} t={t.proj} hue={hue} />
                 </Reveal>
               ))}
             </div>

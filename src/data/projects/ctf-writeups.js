@@ -1,6 +1,7 @@
 export const ctfWriteups = {
   slug: "ctf-writeups",
   category: "cyber",
+  tag: { en: "Security", es: "Seguridad" },
   name: "CTF Writeups",
   kicker: { en: "Security · CTF", es: "Seguridad · CTF" },
   device: "web",
