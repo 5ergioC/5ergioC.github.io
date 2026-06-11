@@ -3,10 +3,11 @@
    ============================================================ */
 import { useEffect } from 'react';
 import { Reveal, Magnetic, DecryptText } from './fx';
-import { useLang, STR, ThemeToggle, LangToggle, L } from './i18n';
-import { Icon, getPROJECT, getPROJECTS, getCATEGORIES } from './data';
+import { useLang, STR, L } from './i18n';
+import { Icon, getPROJECT, getPROJECTS } from './data';
+import { DetailNav } from './detail-nav';
 import { Turntable } from './turntable';
-import { scrollToId } from './utils';
+import { goHomeToSection } from './utils';
 import StickerPeel from './StickerPeel';
 
 const CAT_HUE = { dev: '220', cyber: '150', design: '286', games: '55' };
@@ -107,35 +108,13 @@ export function ProjectDetail({ slug }) {
 
   const goHome = (e) => {
     e.preventDefault();
-    window.location.hash = "";
-    setTimeout(() => scrollToId("projects", false), 40);
+    goHomeToSection("projects");
   };
   const others     = getPROJECTS(lang).filter((x) => x.slug !== slug);
-  const categories = getCATEGORIES(lang).filter(c => c.id !== 'all');
 
   return (
     <div className="detail">
-      <nav className="nav scrolled detail-nav">
-        <div className="wrap">
-          <a href="#" className="brand" onClick={goHome}>
-            <span className="dot"></span>SC<span className="slash">/</span><span style={{ color: "var(--fg-mute)" }}>dev</span>
-          </a>
-          <div className="detail-nav-right">
-            {categories.map((c, i) => (
-              <a key={c.id}
-                 href={`#/cat/${c.id}`}
-                 className={`cat-color-${c.id}${p.category === c.id ? ' active' : ''}`}
-                 style={{ fontFamily: 'var(--font-mono)', fontSize: 13, padding: '8px 10px', borderRadius: 7, background: p.category === c.id ? 'var(--surface-2)' : 'none' }}
-                 onClick={(e) => { e.preventDefault(); window.location.hash = '/cat/' + c.id; }}>
-                <span style={{ marginRight: 4, opacity: 0.6, fontSize: 11 }}>0{i + 1}.</span>{c.label}
-              </a>
-            ))}
-            <ThemeToggle />
-            <LangToggle />
-            <a className="nav-cta" href="assets/Sergio_Castano_CV.pdf" download>CV ↓</a>
-          </div>
-        </div>
-      </nav>
+      <DetailNav activeCat={p.category} onHome={goHome} />
 
       <header className={`detail-hero dev-${p.device}`}>
         <div className="wrap">

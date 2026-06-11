@@ -196,6 +196,16 @@ section { position: relative; scroll-margin-top: var(--nav-h); }
 .nav-cta:hover { border-color: var(--purple); background: oklch(0.6 0.13 286 / 0.12) !important; }
 .nav-burger { display: none; }
 
+/* category pills (detail/category nav) */
+a.cat-pill { font-family: var(--font-mono); font-size: 13px; padding: 8px 10px; border-radius: 7px; white-space: nowrap; }
+a.cat-pill.active { background: var(--surface-2); }
+.nav-links a.cat-pill.active::after { display: none; }
+.cat-pill-idx { margin-right: 4px; opacity: 0.6; font-size: 11px; }
+a.cat-pill.cat-color-dev    { color: oklch(0.78 0.12 220); }
+a.cat-pill.cat-color-cyber  { color: oklch(0.78 0.15 150); }
+a.cat-pill.cat-color-design { color: oklch(0.72 0.14 286); }
+a.cat-pill.cat-color-games  { color: oklch(0.78 0.15 55);  }
+
 /* ---------- language toggle ---------- */
 .nav-right { display: flex; align-items: center; gap: 12px; }
 .lang-toggle {
@@ -679,15 +689,6 @@ footer .meta .accent { color: var(--purple); }
    ============================================================ */
 .detail { min-height: 100vh; }
 .detail-nav { position: sticky; }
-.detail-nav-right { display: flex; align-items: center; gap: 16px; }
-.back-link {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--fg-soft);
-  display: inline-flex; align-items: center; gap: 7px;
-  transition: color 0.2s;
-}
-.back-link:hover { color: var(--fg); }
 
 .detail-hero {
   padding: calc(var(--nav-h) + 70px) 0 60px;
@@ -755,7 +756,7 @@ footer .meta .accent { color: var(--purple); }
   z-index: 10;
 }
 @media (max-width: 960px) {
-  .detail-hero {
+  .detail-hero:has(.sticker-zone) {
     padding-bottom: 180px;
   }
   .sticker-zone {
@@ -1039,8 +1040,6 @@ footer .meta .accent { color: var(--purple); }
   .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .nav-burger.open span:nth-child(2) { opacity: 0; }
   .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  .detail-nav .back-link { display: none; }
-  .detail-nav-right { gap: 12px; }
 }
 @media (max-width: 520px) {
   .wrap { padding: 0 20px; }
@@ -1189,13 +1188,13 @@ footer .meta .accent { color: var(--purple); }
   /* cardDistance=46, offset = 46*3/2 = 69px */
   .proj-swap-area { height: 680px; }
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .proj-swap-area { height: 580px; margin-bottom: 16px; }
 }
-@media (max-width: 560px) {
+@media (max-width: 559px) {
   .proj-swap-area { height: 510px; margin-bottom: 20px; }
 }
-@media (max-width: 400px) {
+@media (max-width: 399px) {
   .proj-swap-area { height: 420px; margin-bottom: 20px; }
 }
 
@@ -1224,7 +1223,7 @@ footer .meta .accent { color: var(--purple); }
   line-height: 1;
 }
 .cat-hero-count {
-  font-family: var(--mono);
+  font-family: var(--font-mono);
   font-size: 13px;
   color: var(--fg-mute);
   letter-spacing: 0.04em;
@@ -1301,7 +1300,7 @@ footer .meta .accent { color: var(--purple); }
     oklch(0.16 0.04 var(--cat-hue));
 }
 .cf-fallback-glyph {
-  font-family: var(--mono);
+  font-family: var(--font-mono);
   font-size: clamp(4rem, 9vw, 7rem);
   font-weight: 800;
   color: oklch(0.78 0.14 var(--cat-hue) / 0.22);
@@ -1322,7 +1321,7 @@ footer .meta .accent { color: var(--purple); }
   display: block;
 }
 .cf-kicker {
-  font-family: var(--mono);
+  font-family: var(--font-mono);
   font-size: 11px;
   color: oklch(0.78 0.14 var(--cat-hue));
   letter-spacing: 0.08em;
@@ -1352,7 +1351,7 @@ footer .meta .accent { color: var(--purple); }
   min-height: calc(2 * 1.6em);
 }
 .cf-meta {
-  font-family: var(--mono);
+  font-family: var(--font-mono);
   font-size: 12px;
   color: var(--fg-mute);
   display: flex;
@@ -1363,7 +1362,7 @@ footer .meta .accent { color: var(--purple); }
 .cf-dot { opacity: 0.4; }
 .cf-stack { display: flex; flex-wrap: wrap; gap: 8px; }
 .cf-stack span {
-  font-family: var(--mono);
+  font-family: var(--font-mono);
   font-size: 11px;
   padding: 3px 10px;
   border-radius: 6px;
@@ -1404,7 +1403,7 @@ footer .meta .accent { color: var(--purple); }
 .cat-card-cover .cover-glyph {
   font-size: 3.5rem;
   font-weight: 800;
-  font-family: var(--mono);
+  font-family: var(--font-mono);
   opacity: 0.15;
   position: relative;
 }
@@ -1459,7 +1458,7 @@ footer .meta .accent { color: var(--purple); }
   border: 1px solid color-mix(in oklch, currentColor 35%, transparent);
   background: color-mix(in oklch, currentColor 10%, transparent);
   cursor: pointer;
-  font-family: var(--mono);
+  font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -1485,4 +1484,31 @@ footer .meta .accent { color: var(--purple); }
   border-radius: 999px;
   border: 1px solid currentColor;
   opacity: 0.6;
+}
+
+/* ============================================================
+   Mobile review pass (2026-06) — small-screen overrides only
+   ============================================================ */
+@media (max-width: 560px) {
+  /* default project gallery: 2-up shots drop to ~130px — go single column */
+  .gallery { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  /* stickers: 190px artwork reads huge against a narrow hero */
+  .sticker-zone { width: min(360px, calc(100vw - 32px)); }
+  .sticker-zone .sticker-image,
+  .sticker-zone .flap-image { width: 150px; }
+  /* category grid covers: 16/7 turns sliver-thin below 480 */
+  .cat-card-cover { aspect-ratio: 16 / 9; }
+  /* turntable drop zone: trim fixed bulk */
+  .tt-drop { min-height: 260px; padding: 28px 18px; }
+}
+
+@media (max-width: 400px) {
+  /* mono email pill overflows a 320px viewport at 15px/26px padding */
+  .contact-mail { font-size: 13px; padding: 12px 16px; gap: 8px; max-width: 100%; }
+  .cf-body { padding: 20px 18px; }
+  /* card stack bleeds ~14px past the right edge on ≤340px viewports */
+  .proj-swap-area { overflow-x: clip; overflow-y: visible; }
 }

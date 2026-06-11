@@ -4,12 +4,14 @@
    ============================================================ */
 import { useEffect } from 'react';
 import { Reveal, Magnetic, DecryptText } from './fx';
-import { useLang, STR, ThemeToggle, LangToggle } from './i18n';
+import { useLang, STR } from './i18n';
 import { Icon, getPROJECTS, getCATEGORIES } from './data';
 import { useSpotlight } from './fx';
+import { DetailNav } from './detail-nav';
+import { goHomeToSection } from './utils';
 
 const goProject = (slug) => { window.location.hash = '/p/' + slug; };
-const goHome    = (e)    => { e && e.preventDefault(); window.location.hash = ''; };
+const goProjects = (e) => { e.preventDefault(); goHomeToSection('projects'); };
 
 const CAT_HUE = { dev: '220', cyber: '150', design: '286', games: '55' };
 
@@ -99,14 +101,7 @@ export function CategoryPage({ catId }) {
   if (!catMeta || !projects.length) {
     return (
       <div className="detail">
-        <nav className="nav scrolled detail-nav">
-          <div className="wrap">
-            <a href="#" className="brand" onClick={goHome}>
-              <span className="dot" />SC<span className="slash">/</span>
-              <span style={{ color: 'var(--fg-mute)' }}>dev</span>
-            </a>
-          </div>
-        </nav>
+        <DetailNav activeCat={catId} />
         <div className="wrap" style={{ paddingTop: '8rem' }}>
           <p style={{ color: 'var(--fg-mute)' }}>No projects here yet.</p>
         </div>
@@ -117,33 +112,12 @@ export function CategoryPage({ catId }) {
   return (
     <div className="detail">
       {/* nav */}
-      <nav className="nav scrolled detail-nav">
-        <div className="wrap">
-          <a href="#" className="brand" onClick={goHome}>
-            <span className="dot" />SC<span className="slash">/</span>
-            <span style={{ color: 'var(--fg-mute)' }}>dev</span>
-          </a>
-          <div className="detail-nav-right">
-            {categories.filter(c => c.id !== 'all').map((c, i) => (
-              <a key={c.id}
-                 href={`#/cat/${c.id}`}
-                 className={`cat-color-${c.id}${c.id === catId ? ' active' : ''}`}
-                 style={{ fontFamily: 'var(--font-mono)', fontSize: 13, padding: '8px 10px', borderRadius: 7, background: c.id === catId ? 'var(--surface-2)' : 'none' }}
-                 onClick={(e) => { e.preventDefault(); window.location.hash = '/cat/' + c.id; }}>
-                <span style={{ marginRight: 4, opacity: 0.6, fontSize: 11 }}>0{i + 1}.</span>{c.label}
-              </a>
-            ))}
-            <ThemeToggle />
-            <LangToggle />
-            <a className="nav-cta" href="assets/Sergio_Castano_CV.pdf" download>CV ↓</a>
-          </div>
-        </div>
-      </nav>
+      <DetailNav activeCat={catId} />
 
       {/* category hero */}
       <header className="cat-hero" style={{ '--cat-hue': hue }}>
         <div className="wrap">
-          <a href="#" className="crumb" onClick={goHome}>
+          <a href="#" className="crumb" onClick={goProjects}>
             {Icon.back({ style: { width: 14, height: 14 } })} {t.detail.crumb}
           </a>
           <h1 className="cat-hero-title">
@@ -199,7 +173,7 @@ export function CategoryPage({ catId }) {
       <footer>
         <div className="wrap">
           <div className="meta">Sergio Castaño <span className="accent">·</span> {t.contact.foot1}</div>
-          <a href="#" className="meta back-foot" onClick={goHome}>← {t.detail.back}</a>
+          <a href="#" className="meta back-foot" onClick={goProjects}>← {t.detail.back}</a>
         </div>
       </footer>
     </div>
