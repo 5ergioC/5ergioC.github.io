@@ -1,11 +1,11 @@
 /* ============================================================
    Project detail subpage (hash route #/p/<slug>)
    ============================================================ */
-import { useEffect } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { Reveal, Magnetic, DecryptText } from './fx';
 import { useLang, STR, L } from './i18n';
 import { Icon, getPROJECT, getPROJECTS } from './data';
-import { DetailNav } from './detail-nav';
+import { DetailNav, DetailFooter } from './detail-nav';
 import { Turntable } from './turntable';
 import { goHomeToSection } from './utils';
 import StickerPeel from './StickerPeel';
@@ -100,11 +100,41 @@ function Gallery({ p }) {
   );
 }
 
+// true on phone-width viewports — drives the spread sticker layout below.
+// Must match the ≤480px sticker-zone override in styles.css (unscaled spread).
+function useNarrow(query = '(max-width: 480px)') {
+  const [narrow, setNarrow] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia(query).matches
+  );
+  useEffect(() => {
+    const mq = window.matchMedia(query);
+    const on = () => setNarrow(mq.matches);
+    mq.addEventListener('change', on);
+    return () => mq.removeEventListener('change', on);
+  }, [query]);
+  return narrow;
+}
+
 export function ProjectDetail({ slug }) {
   const [lang] = useLang();
   const t = STR[lang].detail;
   const p = getPROJECT(slug, lang);
+  const narrow = useNarrow();
   useEffect(() => { window.scrollTo(0, 0); }, [slug]);
+
+  // On phones the authored desktop sticker coords collapse to the center; spread
+  // them across the (smaller) mobile zone instead — first left, last right.
+  const stickerPos = useMemo(() => {
+    const n = p.stickers ? p.stickers.length : 0;
+    if (!narrow || !n) return null;
+    const zoneW = Math.min(360, (typeof window !== 'undefined' ? window.innerWidth : 360) - 32);
+    const sw = 140; // matches .sticker-image width at ≤480px
+    const span = Math.max(0, zoneW - sw);
+    return p.stickers.map((s, i) => ({
+      x: n === 1 ? Math.round(span / 2) : Math.round((span * i) / (n - 1)),
+      y: 18 + (i % 2) * 34,
+    }));
+  }, [narrow, slug, p.stickers]);
 
   const goHome = (e) => {
     e.preventDefault();
@@ -148,7 +178,7 @@ export function ProjectDetail({ slug }) {
                 peelDirection={s.peelDirection ?? 0}
                 shadowIntensity={0.4}
                 lightingIntensity={0.1}
-                initialPosition={s.position ?? { x: i * 155, y: i * 30 }}
+                initialPosition={stickerPos ? stickerPos[i] : (s.position ?? { x: i * 155, y: i * 30 })}
               />
             ))}
           </div>
@@ -218,12 +248,7 @@ export function ProjectDetail({ slug }) {
         </div>
       </section>
 
-      <footer>
-        <div className="wrap">
-          <div className="meta">Sergio Castaño <span className="accent">·</span> {STR[lang].contact.foot1}</div>
-          <a href="#" className="meta back-foot" onClick={goHome}>← {t.back}</a>
-        </div>
-      </footer>
+      <DetailFooter backLabel={t.back} onBack={goHome} />
     </div>
   );
 }

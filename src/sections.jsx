@@ -373,8 +373,8 @@ export function Contact() {
         <Reveal delay={80}><p className="contact-sub">{t.sub}</p></Reveal>
         <Reveal delay={140}>
           <Magnetic strength={0.18}>
-            <a className="contact-mail" href="mailto:sa.castanoa1@uniandes.edu.co">
-              {Icon.mail({ style: { width: 20, height: 20, color: "var(--purple)" } })} sa.castanoa1@uniandes.edu.co
+            <a className="contact-mail" href="mailto:sergioacastanoa@gmail.com">
+              {Icon.mail({ style: { width: 20, height: 20, color: "var(--purple)" } })} sergioacastanoa@gmail.com
             </a>
           </Magnetic>
         </Reveal>

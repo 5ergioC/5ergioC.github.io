@@ -7,7 +7,7 @@ import { Reveal, Magnetic, DecryptText } from './fx';
 import { useLang, STR } from './i18n';
 import { Icon, getPROJECTS, getCATEGORIES } from './data';
 import { useSpotlight } from './fx';
-import { DetailNav } from './detail-nav';
+import { DetailNav, DetailFooter } from './detail-nav';
 import { goHomeToSection } from './utils';
 
 const goProject = (slug) => { window.location.hash = '/p/' + slug; };
@@ -170,12 +170,7 @@ export function CategoryPage({ catId }) {
       )}
 
       {/* footer */}
-      <footer>
-        <div className="wrap">
-          <div className="meta">Sergio Castaño <span className="accent">·</span> {t.contact.foot1}</div>
-          <a href="#" className="meta back-foot" onClick={goProjects}>← {t.detail.back}</a>
-        </div>
-      </footer>
+      <DetailFooter backLabel={t.detail.back} onBack={goProjects} />
     </div>
   );
 }

@@ -1,10 +1,10 @@
 /* ============================================================
-   Shared sticky nav for project detail + category pages
-   Desktop: inline category pills · ≤820px: burger dropdown
+   Shared chrome for project detail + category pages:
+   sticky nav (desktop pills · ≤960px burger) and footer
    ============================================================ */
 import { useState } from 'react';
-import { useLang, ThemeToggle, LangToggle } from './i18n';
-import { getCATEGORIES } from './data';
+import { useLang, STR, ThemeToggle, LangToggle } from './i18n';
+import { Icon, getCATEGORIES } from './data';
 
 const goHomeDefault = (e) => { e.preventDefault(); window.location.hash = ''; };
 
@@ -45,5 +45,23 @@ export function DetailNav({ activeCat, onHome }) {
         </div>
       </div>
     </nav>
+  );
+}
+
+export function DetailFooter({ backLabel, onBack }) {
+  const [lang] = useLang();
+  return (
+    <footer>
+      <div className="wrap">
+        <div className="meta">Sergio Castaño <span className="accent">·</span> {STR[lang].contact.foot1}</div>
+        <div className="foot-socials">
+          <a href="https://github.com/5ergioC" target="_blank" rel="noopener">{Icon.github({ className: 'ic' })} GitHub</a>
+          <a href="https://www.linkedin.com/in/sergio-alejandro-castaño-arcila/" target="_blank" rel="noopener">{Icon.linkedin({ className: 'ic' })} LinkedIn</a>
+          <a href="https://www.behance.net/sergiocastao6" target="_blank" rel="noopener">{Icon.behance({ className: 'ic' })} Behance</a>
+          <a href="mailto:sergioacastanoa@gmail.com">{Icon.mail({ className: 'ic' })} Mail</a>
+        </div>
+        <a href="#" className="meta back-foot" onClick={onBack}>← {backLabel}</a>
+      </div>
+    </footer>
   );
 }
