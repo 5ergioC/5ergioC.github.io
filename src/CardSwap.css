@@ -124,22 +124,22 @@
   line-height: 1;
 }
 
-/* watermark category name */
-.cs-watermark {
+/* representative area emblem (line-art, tinted by the category hue) */
+.cs-emblem {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 5.5rem;
-  font-weight: 900;
-  font-family: var(--mono, monospace);
-  letter-spacing: -0.05em;
-  color: oklch(0.82 0.16 var(--cs-hue, 260));
-  opacity: 0.09;
-  user-select: none;
-  line-height: 1;
+  color: oklch(0.82 0.17 var(--cs-hue, 260));
+  opacity: 0.2;
   pointer-events: none;
+}
+.cs-emblem svg {
+  width: 52%;
+  max-width: 230px;
+  height: auto;
+  filter: drop-shadow(0 6px 18px oklch(0.6 0.18 var(--cs-hue, 260) / 0.25));
 }
 
 /* centered project count */
@@ -240,9 +240,6 @@
   .cs-count-num {
     font-size: 3.5rem;
   }
-  .cs-watermark {
-    font-size: 4rem;
-  }
   .cs-count-label {
     font-size: 9px;
   }
@@ -274,9 +271,6 @@
   }
   .cs-count-num {
     font-size: 2.8rem;
-  }
-  .cs-watermark {
-    font-size: 3rem;
   }
 }
 
@@ -311,6 +305,7 @@
       oklch(0.92 0.04 var(--cs-hue, 260)) 100%
     );
 }
+[data-theme="light"] .cs-emblem { color: oklch(0.58 0.18 var(--cs-hue, 260)); opacity: 0.3; }
 [data-theme="light"] .cs-cat-name { opacity: 0.15; }
 [data-theme="light"] .cs-proj-count { opacity: 0.08; }
 [data-theme="light"] .cs-year-stamp { color: rgba(22,24,44,0.2); }
