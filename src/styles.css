@@ -636,6 +636,7 @@ footer .meta .accent { color: var(--purple); }
 .dev-mobile { --pa: 220; }
 .dev-game { --pa: 150; }
 .dev-cube { --pa: 330; }
+.dev-video { --pa: 286; }
 
 /* ---------- project card (override) ---------- */
 .card {
@@ -690,7 +691,9 @@ footer .meta .accent { color: var(--purple); }
    PROJECT DETAIL PAGE
    ============================================================ */
 .detail { min-height: 100vh; }
-.detail-nav { position: sticky; }
+/* inherit the fixed positioning from .nav — `sticky` without a top inset never
+   sticks, so the detail/category nav scrolled away on mobile */
+.detail-nav { position: fixed; }
 
 .detail-hero {
   padding: calc(var(--nav-h) + 70px) 0 60px;
@@ -820,6 +823,58 @@ footer .meta .accent { color: var(--purple); }
 }
 .gallery-video {
   margin-bottom: 40px;
+}
+/* featured video + caption/link (e.g. a reel's standout piece) */
+.video-feature { margin: 0 0 40px; }
+.video-feature-cap {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--fg-mute);
+  text-align: center;
+  max-width: 560px;
+  margin: 14px auto 0;
+}
+.video-feature-cap a {
+  color: var(--purple);
+  white-space: nowrap;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+.video-feature-cap a:hover { color: var(--cyan); border-bottom-color: currentColor; }
+/* embedded video inside a gallery shot frame */
+.shot-video { width: 100%; height: 100%; border: 0; display: block; }
+/* Instagram post embed (full collaborative piece) */
+.ig-embed { margin: 0 0 40px; display: flex; flex-direction: column; align-items: center; }
+.ig-embed-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  margin-bottom: 14px;
+  text-align: center;
+}
+.ig-embed .instagram-media { margin: 0 auto !important; }
+/* IG embeds have a hard 326px min-width; scale to fit narrow phones */
+@media (max-width: 380px) {
+  .ig-embed { overflow: hidden; }
+  .ig-embed .instagram-media {
+    transform: scale(0.82);
+    transform-origin: top center;
+    /* reclaim the height the scale leaves empty below the card */
+    margin-bottom: -92px !important;
+  }
+}
+/* link fallback shown if embed.js is blocked */
+.ig-embed blockquote:not([data-instgrm-payload-id]) a {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--purple);
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  padding: 10px 16px;
 }
 
 /* gallery */
@@ -1066,6 +1121,9 @@ footer .meta .accent { color: var(--purple); }
   /* burger's tap-padding leaves the icon visually glued to the edge; nudge the
      whole control inward so it breathes like the brand does on the left */
   .nav-burger { margin-right: 6px; }
+  /* footer: space-between wraps items raggedly on phones — stack them cleanly */
+  footer { margin-top: 64px; padding: 32px 0; }
+  footer .wrap { flex-direction: column; align-items: flex-start; gap: 16px; }
 }
 
 /* ============================================================

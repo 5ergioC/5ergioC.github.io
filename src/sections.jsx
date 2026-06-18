@@ -195,6 +195,42 @@ const CAT_DESC = {
   games:  { en: 'Game dev projects & experiments.',       es: 'Videojuegos y experimentos.' },
 };
 
+// Representative line-art emblem per area. Inherits color from .cs-emblem
+// (tinted by the category hue), so only the geometry lives here.
+const svgProps = { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.4, strokeLinecap: 'round', strokeLinejoin: 'round' };
+const CAT_EMBLEM = {
+  dev: (
+    <svg {...svgProps}>
+      <polyline points="8 6 2 12 8 18" />
+      <polyline points="16 6 22 12 16 18" />
+      <line x1="13.5" y1="4" x2="10.5" y2="20" />
+    </svg>
+  ),
+  cyber: (
+    <svg {...svgProps}>
+      <path d="M12 2.2 4 5.4V11c0 5.2 3.4 8.4 8 10.4 4.6-2 8-5.2 8-10.4V5.4L12 2.2Z" />
+      <circle cx="12" cy="10.3" r="1.7" />
+      <path d="M12 12V14.8" />
+    </svg>
+  ),
+  design: (
+    <svg {...svgProps}>
+      <path d="M12 2.5 20.5 7v10L12 21.5 3.5 17V7L12 2.5Z" />
+      <path d="M3.7 7 12 11.8 20.3 7" />
+      <path d="M12 11.8V21.4" />
+    </svg>
+  ),
+  games: (
+    <svg {...svgProps}>
+      <path d="M7.2 8h9.6a4 4 0 0 1 3.95 3.36l.7 4.4A2.3 2.3 0 0 1 16.9 18.2l-1.2-1.4a2 2 0 0 0-1.5-.7h-4.4a2 2 0 0 0-1.5.7L7.1 18.2a2.3 2.3 0 0 1-4.05-2.44l.7-4.4A4 4 0 0 1 7.2 8Z" />
+      <line x1="8" y1="11" x2="8" y2="13.4" />
+      <line x1="6.8" y1="12.2" x2="9.2" y2="12.2" />
+      <circle cx="15.4" cy="11.6" r="0.9" />
+      <circle cx="17.4" cy="13.2" r="0.9" />
+    </svg>
+  ),
+};
+
 function CatSwapCard({ cat, projects, lang }) {
   const hue = CAT_HUE[cat.id] || '260';
   const tags = [...new Set(projects.flatMap(p => p.stack))].slice(0, 6);
@@ -210,8 +246,8 @@ function CatSwapCard({ cat, projects, lang }) {
 
       {/* visual body */}
       <div className="cs-visual" style={{ '--cs-hue': hue }}>
-        {/* big watermark name */}
-        <div className="cs-watermark">{cat.label}</div>
+        {/* representative area emblem */}
+        <div className="cs-emblem">{CAT_EMBLEM[cat.id]}</div>
         {/* centered count */}
         <div className="cs-count-display">
           <span className="cs-count-num">{projects.length}</span>

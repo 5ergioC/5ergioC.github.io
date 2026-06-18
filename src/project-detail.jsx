@@ -32,6 +32,16 @@ function Figure({ g }) {
 // static placeholder. Once screenshots land in /public and items get a
 // `src`, every gallery renders <Figure> automatically.
 function Slot({ g }) {
+  if (g.youtube) return (
+    <iframe
+      className="shot-video"
+      src={`https://www.youtube.com/embed/${g.youtube}`}
+      title={g.cap || ""}
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowFullScreen
+    />
+  );
   if (g.src) return <Figure g={g} />;
   return <div className="img-placeholder" />;
 }
@@ -41,8 +51,9 @@ function VideoEmbed({ p }) {
   // p.videoRatio: e.g. "9 / 16" for Shorts/vertical recordings. Defaults to 16/9.
   const ratio = p.videoRatio || "16 / 9";
   const isVertical = ratio.replace(/\s/g, '').startsWith('9/');
-  return (
-    <div className={`video-wrap gallery-video${isVertical ? ' vertical' : ''}`} style={{ '--video-ratio': ratio }}>
+  // captioned videos drop the gallery-video margin — the figure owns the spacing
+  const frame = (
+    <div className={`video-wrap${isVertical ? ' vertical' : ''}${p.videoCaption ? '' : ' gallery-video'}`} style={{ '--video-ratio': ratio }}>
       <iframe
         className="demo-video"
         src={`https://www.youtube.com/embed/${p.video}?vq=hd1080`}
@@ -51,6 +62,45 @@ function VideoEmbed({ p }) {
         allowFullScreen
       />
     </div>
+  );
+  if (!p.videoCaption) return frame;
+  return (
+    <figure className="video-feature">
+      {frame}
+      <figcaption className="video-feature-cap">
+        {p.videoCaption}
+        {p.videoLink && (
+          <a href={p.videoLink} target="_blank" rel="noopener"> {p.videoLinkLabel || "Ver más"} ↗</a>
+        )}
+      </figcaption>
+    </figure>
+  );
+}
+
+// Official Instagram embed: blockquote processed by embed.js (auto-sizes,
+// falls back to a plain link if the script is blocked). Renders nothing
+// without a url.
+function InstagramEmbed({ url, label }) {
+  useEffect(() => {
+    if (!url) return;
+    const SRC = "https://www.instagram.com/embed.js";
+    if (document.querySelector(`script[src="${SRC}"]`)) {
+      if (window.instgrm) window.instgrm.Embeds.process();
+    } else {
+      const s = document.createElement("script");
+      s.async = true;
+      s.src = SRC;
+      document.body.appendChild(s);
+    }
+  }, [url]);
+  if (!url) return null;
+  return (
+    <figure className="ig-embed">
+      {label && <figcaption className="ig-embed-label">{label}</figcaption>}
+      <blockquote className="instagram-media" data-instgrm-permalink={url} data-instgrm-version="14">
+        <a href={url} target="_blank" rel="noopener">Ver en Instagram ↗</a>
+      </blockquote>
+    </figure>
   );
 }
 
@@ -88,6 +138,7 @@ function Gallery({ p }) {
   return (
     <>
       <VideoEmbed p={p} />
+      <InstagramEmbed url={p.instagram} label={p.instagramLabel} />
       <div className="gallery">
         {p.gallery.map((g) => (
           <figure key={g.id} className={`shot ${g.span === "full" ? "full" : "half"}`}>

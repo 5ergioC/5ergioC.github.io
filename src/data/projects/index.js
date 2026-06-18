@@ -5,6 +5,7 @@ import { spendant }     from './spendant';
 import { defenderClone }  from './defender-clone';
 import { goalBut }        from './goalBut';
 import { studio }         from './studio';
+import { animation }      from './animation';
 import { ctfWriteups }    from './ctf-writeups';
 
 export const PROJECTS = [
@@ -14,5 +15,6 @@ export const PROJECTS = [
   defenderClone,
   goalBut,
   studio,
+  animation,
   ctfWriteups,
 ];
