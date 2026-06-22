@@ -3,7 +3,7 @@
    ============================================================ */
 import { useEffect, useState, useMemo } from 'react';
 import { Reveal, Magnetic, DecryptText } from './fx';
-import { useLang, STR, L } from './i18n';
+import { useLang, STR, L, useTheme } from './i18n';
 import { Icon, getPROJECT, getPROJECTS } from './data';
 import { DetailNav, DetailFooter } from './detail-nav';
 import { Turntable } from './turntable';
@@ -77,29 +77,31 @@ function VideoEmbed({ p }) {
   );
 }
 
-// Official Instagram embed: blockquote processed by embed.js (auto-sizes,
-// falls back to a plain link if the script is blocked). Renders nothing
-// without a url.
-function InstagramEmbed({ url, label }) {
-  useEffect(() => {
-    if (!url) return;
-    const SRC = "https://www.instagram.com/embed.js";
-    if (document.querySelector(`script[src="${SRC}"]`)) {
-      if (window.instgrm) window.instgrm.Embeds.process();
-    } else {
-      const s = document.createElement("script");
-      s.async = true;
-      s.src = SRC;
-      document.body.appendChild(s);
-    }
-  }, [url]);
+// Instagram post embed via the native /embed iframe so we can match the app
+// theme (?theme=dark when dark). Fixed height per post (IG won't report its
+// real height without the embed.js handshake); a permanent link sits below as
+// a fallback if the iframe is blocked.
+function InstagramEmbed({ url, label, height = 540 }) {
+  const [theme] = useTheme();
   if (!url) return null;
+  const m = url.match(/\/(?:p|reel|tv)\/([^/?#]+)/);
+  const id = m ? m[1] : null;
+  if (!id) return null;
+  const src = `https://www.instagram.com/p/${id}/embed/${theme === "dark" ? "?theme=dark" : ""}`;
   return (
     <figure className="ig-embed">
       {label && <figcaption className="ig-embed-label">{label}</figcaption>}
-      <blockquote className="instagram-media" data-instgrm-permalink={url} data-instgrm-version="14">
-        <a href={url} target="_blank" rel="noopener">Ver en Instagram ↗</a>
-      </blockquote>
+      <iframe
+        key={theme}
+        className="ig-iframe"
+        src={src}
+        style={{ height }}
+        title={label || "Instagram"}
+        loading="lazy"
+        scrolling="no"
+        allowtransparency="true"
+      />
+      <a className="ig-embed-link" href={url} target="_blank" rel="noopener">Ver en Instagram ↗</a>
     </figure>
   );
 }
@@ -138,7 +140,7 @@ function Gallery({ p }) {
   return (
     <>
       <VideoEmbed p={p} />
-      <InstagramEmbed url={p.instagram} label={p.instagramLabel} />
+      <InstagramEmbed url={p.instagram} label={p.instagramLabel} height={p.instagramHeight} />
       <div className="gallery">
         {p.gallery.map((g) => (
           <figure key={g.id} className={`shot ${g.span === "full" ? "full" : "half"}`}>
@@ -201,12 +203,15 @@ export function ProjectDetail({ slug }) {
         <div className="wrap">
           <a href="#" className="crumb" onClick={goHome}>{Icon.back({ style: { width: 14, height: 14 } })} {t.crumb}</a>
           <div className="detail-kicker">{p.kicker}</div>
-          <h1 className="detail-title"><DecryptText onView key={lang + slug} text={p.name} /></h1>
+          <h1 className={`detail-title${p.compactTitle ? " compact" : ""}`}><DecryptText onView key={lang + slug} text={p.name} /></h1>
           <p className="detail-tagline">{p.tagline}</p>
           <div className="detail-meta">
             <div className="dm"><span className="dm-k">{t.year}</span><span className="dm-v">{p.year}</span></div>
             <div className="dm"><span className="dm-k">{t.role}</span><span className="dm-v">{p.role}</span></div>
             <div className="dm"><span className="dm-k">{t.status}</span><span className="dm-v">{p.status}</span></div>
+            {p.provenance && (
+              <div className="dm dm-wide"><span className="dm-k">{p.provenance.k}</span><span className="dm-v">{p.provenance.v}</span></div>
+            )}
           </div>
           {p.live && (
             <div className="detail-actions">
