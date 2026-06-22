@@ -731,6 +731,15 @@ footer .meta .accent { color: var(--purple); }
   line-height: 0.98;
   margin-bottom: 16px;
 }
+/* long titles on sticker pages: shrink + cap width so the text wraps and
+   never reaches the right-side sticker zone (desktop only; ≤960px stickers
+   move to the bottom, so the full-size title is safe there) */
+@media (min-width: 961px) {
+  .detail-title.compact {
+    font-size: clamp(40px, 4.4vw, 56px);
+    max-width: min(50vw, 540px);
+  }
+}
 .detail-tagline {
   font-size: clamp(19px, 2.6vw, 27px);
   color: var(--fg-soft);
@@ -741,6 +750,8 @@ footer .meta .accent { color: var(--purple); }
 }
 .detail-meta { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 38px; }
 .dm { display: flex; flex-direction: column; gap: 5px; }
+.dm-wide { flex-basis: 100%; }
+.dm-wide .dm-v { max-width: 52ch; }
 .dm-k { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-mute); }
 .dm-v { font-size: 15px; color: var(--fg); }
 .detail-actions { margin-top: 34px; }
@@ -855,26 +866,32 @@ footer .meta .accent { color: var(--purple); }
   margin-bottom: 14px;
   text-align: center;
 }
-.ig-embed .instagram-media { margin: 0 auto !important; }
+.ig-iframe {
+  width: 326px;
+  max-width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  display: block;
+  margin: 0 auto;
+}
+.ig-embed-link {
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--purple);
+  transition: color 0.2s;
+}
+.ig-embed-link:hover { color: var(--cyan); }
 /* IG embeds have a hard 326px min-width; scale to fit narrow phones */
 @media (max-width: 380px) {
   .ig-embed { overflow: hidden; }
-  .ig-embed .instagram-media {
+  .ig-iframe {
     transform: scale(0.82);
     transform-origin: top center;
     /* reclaim the height the scale leaves empty below the card */
-    margin-bottom: -92px !important;
+    margin-bottom: -97px;
   }
-}
-/* link fallback shown if embed.js is blocked */
-.ig-embed blockquote:not([data-instgrm-payload-id]) a {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--purple);
-  border: 1px solid var(--line-2);
-  border-radius: 8px;
-  padding: 10px 16px;
 }
 
 /* gallery */
