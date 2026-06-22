@@ -12,6 +12,10 @@ export const protalker = {
   year: "2025",
   role: { en: "Frontend development", es: "Desarrollo frontend" },
   status: { en: "Prototype, not publicly deployed", es: "Prototipo, no desplegado públicamente" },
+  provenance: {
+    k: { en: "Course", es: "Curso" },
+    v: { en: "Product Design & IT Innovation · ISIS2007 · 2025-1", es: "Diseño de Productos e Innovación en TI · ISIS2007 · 2025-1" },
+  },
   stack: ["Lovable", "React", "Vite", "Supabase", "ElevenLabs", "OpenAI API"],
   stickers: [
     { src: "/stickers/lovable.svg", alt: "Lovable", rotate: -8, position: { x: 0, y: 0 } },

@@ -3,17 +3,26 @@ export const animation = {
   category: "design",
   tag: { en: "Animation", es: "Animación" },
   name: { en: "Experimental Animation", es: "Animación Experimental" },
-  kicker: { en: "Elective · Uniandes · DISO3411", es: "Electiva · Uniandes · DISO3411" },
+  kicker: { en: "Blender · Animate · Stop Motion", es: "Blender · Animate · Stop Motion" },
   device: "video",
+  compactTitle: true, // long name — shrink + wrap so it clears the sticker zone
   badge: { en: "Design · Animation", es: "Diseño · Animación" },
   tagline: {
     en: "Short pieces from the Experimental Animation elective — from rotoscoping to stylized 3D in Blender.",
     es: "Piezas cortas de la electiva de Animación Experimental — de rotoscopía a 3D estilizado en Blender.",
   },
-  year: "2026-1",
+  year: "2026",
   role: { en: "Animation", es: "Animación" },
-  status: { en: "Coursework · DISO3411", es: "Trabajos · DISO3411" },
+  status: { en: "Selected pieces", es: "Piezas seleccionadas" },
+  provenance: {
+    k: { en: "Course", es: "Curso" },
+    v: { en: "Experimental Animation (elective) · DISO3411 · 2026-1", es: "Animación Experimental (electiva) · DISO3411 · 2026-1" },
+  },
   stack: ["Blender", "Photoshop", "Adobe Animate", "Stop Motion"],
+  stickers: [
+    { src: "/stickers/blender.svg",   alt: "Blender",   rotate: -8, position: { x: 8,   y: 24 } },
+    { src: "/stickers/photoshop.svg", alt: "Photoshop", rotate: 9,  position: { x: 120, y: 196 } },
+  ],
 
   // Featured piece: my 3D part of the collaborative "exquisite corpse".
   // Vertical short (like Spendant); caption links to the full class post.
@@ -49,8 +58,8 @@ export const animation = {
       youtube: "SUF269S7DSQ",
       ratio: "16 / 9",
       cap: {
-        en: "Rotoscoping · 10 fps · 10 s · Photoshop — Link from Ocarina of Time as the \"explaining\" meme, on why he shouldn't go back to the past.",
-        es: "Rotoscopía · 10 fps · 10 s · Photoshop — Link de Ocarina of Time como el meme del \"que explica\", sobre por qué no debería volver al pasado.",
+        en: "Rotoscoping · 10 fps · 10 s · Photoshop — Link from Ocarina of Time as the \"Ibai explaining\" meme, on why he shouldn't go back to the past.",
+        es: "Rotoscopía · 10 fps · 10 s · Photoshop — Link de Ocarina of Time como el meme del \"Ibai explicando\", sobre por qué no debería volver al pasado.",
       },
     },
     {
@@ -58,8 +67,8 @@ export const animation = {
       youtube: "Xj4Iy_093ho",
       ratio: "16 / 9",
       cap: {
-        en: "Head turn · 24 fps · 2 s · Adobe Animate — Makoto Yuki (Persona 3 Reload) following the symbolic blue butterfly.",
-        es: "Head turn · 24 fps · 2 s · Adobe Animate — Makoto Yuki (Persona 3 Reload) siguiendo la simbólica mariposa azul.",
+        en: "Head turn · 24 fps · 2 s · Adobe Animate — Makoto Yuki (Persona 3 Reload) following the blue butterfly.",
+        es: "Head turn · 24 fps · 2 s · Adobe Animate — Makoto Yuki (Persona 3 Reload) siguiendo la mariposa azul.",
       },
     },
     {

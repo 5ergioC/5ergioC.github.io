@@ -13,6 +13,10 @@ export const andeseats = {
   year: "2025",
   role: { en: "Full-stack developer", es: "Desarrollador full-stack" },
   status: { en: "Live in production", es: "En vivo, en producción" },
+  provenance: {
+    k: { en: "Context", es: "Contexto" },
+    v: { en: "Built as department representative on the Uniandes student council", es: "Hecho como representante del departamento en el consejo estudiantil uniandino" },
+  },
   live: { label: "andeseats.co", url: "https://www.andeseats.co" },
   stickers: [
     { src: "/stickers/react.svg", alt: "React", rotate: -10, position: { x: 0, y: 0 } },

@@ -12,6 +12,10 @@ export const defenderClone = {
   year: "2026",
   role: { en: "Visual, audio, HUD & bonuses", es: "Visual, audio, HUD y bonos" },
   status: { en: "Published on itch.io", es: "Publicado en itch.io" },
+  provenance: {
+    k: { en: "Course", es: "Curso" },
+    v: { en: "Intro to Game Development · MISW4407 · 2026-1", es: "Introducción al Desarrollo de Videojuegos · MISW4407 · 2026-1" },
+  },
   stack: ["Python", "pygame-ce", "ECS", "asyncio", "Game Dev"],
   live: { url: "https://botmrshadow.itch.io/defender-clone-misw-4407-g15", label: "itch.io" },
   stickers: [

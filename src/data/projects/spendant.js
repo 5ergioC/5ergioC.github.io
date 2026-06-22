@@ -12,6 +12,10 @@ export const spendant = {
   year: "2026",
   role: { en: "Design & development", es: "Diseño y desarrollo" },
   status: { en: "Completed", es: "Terminado" },
+  provenance: {
+    k: { en: "Course", es: "Curso" },
+    v: { en: "Mobile App Development · ISIS3510 · 2026-1", es: "Constr. Aplicaciones Móviles · ISIS3510 · 2026-1" },
+  },
   stack: ["Android", "Finance", "Flutter", "Firebase", "Hive", "Wear OS", "Pinecone"],
   live: { url: "https://github.com/ISIS3510-202610-Team21/spendant_flutter", label: "GitHub" },
   video: "peYswc80m9s",
