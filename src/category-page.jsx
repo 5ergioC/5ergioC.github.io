@@ -60,7 +60,7 @@ function FeaturedProject({ p, t, hue }) {
         <div className="cf-glyph">{p.name.charAt(0)}</div>
         <div className="cf-body">
           <div className="cf-kicker">{p.kicker}</div>
-          <div className="cf-name">{p.name}</div>
+          <div className={`cf-name${p.compactTitle ? ' compact' : ''}`}>{p.name}</div>
           <p className="cf-tagline">{p.tagline}</p>
           <div className="cf-meta">
             <span>{p.year}</span>
