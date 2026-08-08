@@ -4,8 +4,8 @@ import { protalker }    from './protalker';
 import { spendant }     from './spendant';
 import { defenderClone }  from './defender-clone';
 import { goalBut }        from './goalBut';
-import { studio }         from './studio';
-import { animation }      from './animation';
+import { modeling3d }    from './3d-modeling-for-games';
+import { experimentalAnimation } from './experimental-animation';
 import { ctfWriteups }    from './ctf-writeups';
 
 export const PROJECTS = [
@@ -14,7 +14,7 @@ export const PROJECTS = [
   spendant,
   defenderClone,
   goalBut,
-  studio,
-  animation,
+  modeling3d,
+  experimentalAnimation,
   ctfWriteups,
 ];

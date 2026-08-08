@@ -1,5 +1,5 @@
-export const animation = {
-  slug: "animation",
+export const experimentalAnimation = {
+  slug: "experimental-animation",
   category: "design",
   tag: { en: "Animation", es: "Animación" },
   name: { en: "Experimental Animation", es: "Animación Experimental" },

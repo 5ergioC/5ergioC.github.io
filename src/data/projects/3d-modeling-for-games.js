@@ -1,5 +1,5 @@
-export const studio = {
-  slug: "studio",
+export const modeling3d = {
+  slug: "3d-modeling-for-games",
   category: "design",
   tag: { en: "3D", es: "3D" },
   name: { en: "3D Modeling for Games", es: "Modelado 3D para Videojuegos" },
