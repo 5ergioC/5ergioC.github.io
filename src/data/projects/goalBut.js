@@ -11,7 +11,11 @@ export const goalBut = {
   tagline: { en: "A football match where every goal changes the rules.", es: "Un partido de fútbol donde cada gol cambia las reglas." },
   year: "2026",
   role: { en: "Design & development", es: "Diseño y desarrollo" },
-  status: { en: "Game jam entry — Uniandes EA", es: "Entrada game jam — Uniandes EA" },
+  status: { en: "Published on itch.io", es: "Publicado en itch.io" },
+  provenance: {
+    k: { en: "Game jam", es: "Game jam" },
+    v: { en: "Uniandes EA · 2026-1", es: "Uniandes EA · 2026-1" },
+  },
   stack: ["Godot 4", "GDScript", "2D", "Pixel Art", "Local Multiplayer"],
   live: { url: "https://botmrshadow.itch.io/goalbut", label: "itch.io" },
   stickers: [
